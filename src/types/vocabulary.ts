@@ -14,6 +14,8 @@ export interface VocabularyWord {
   partOfSpeech?: string
   example?: string
   exampleTranslation?: string
+  /** 异步补全（译文/卡片内容）用的 LLM provider，补全失败后靠它重试 */
+  enrichProviderId?: string
   // 简化间隔重复调度
   createdAt: number
   /** 到期复习时间戳，<= now 表示待复习 */
@@ -33,6 +35,9 @@ export interface VocabularySaveWordPayload {
   sourceUrl?: string
   sourceLanguage?: string
   targetLanguage?: string
+  /** 保存来源已有卡片内容时直接带上（如词典动作的结果），省一次 LLM 补全 */
+  phonetic?: string
+  partOfSpeech?: string
   /** 用于异步补充卡片内容（音标/词性/例句）的 LLM provider */
   enrichProviderId?: string
 }

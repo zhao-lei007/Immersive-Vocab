@@ -6,7 +6,7 @@ import { i18n } from "#imports"
 import { Button } from "@/components/ui/base-ui/button"
 import { Label } from "@/components/ui/base-ui/label"
 import { Switch } from "@/components/ui/base-ui/switch"
-import { sendMessage } from "@/utils/message"
+import { onMessage, sendMessage } from "@/utils/message"
 import {
   getVocabularyHighlightEnabled,
   setVocabularyHighlightEnabled,
@@ -242,7 +242,8 @@ function WordList({
               </p>
               <p className="text-muted-foreground mt-0.5 text-sm break-words [overflow-wrap:anywhere]">
                 {word.partOfSpeech ? `${word.partOfSpeech} · ` : ""}
-                {word.translation}
+                {/* 译文由后台异步补全，还没到时先展示占位符 */}
+                {word.translation || "…"}
               </p>
               {word.example && (
                 <p className="text-muted-foreground mt-1 text-xs break-words [overflow-wrap:anywhere]">
@@ -294,6 +295,13 @@ export function VocabularyPanel() {
         setIsLoaded(true)
       }
     })()
+  }, [])
+
+  // 页面上保存/复习生词后，后台会广播变更通知，这里重新拉取列表
+  useEffect(() => {
+    return onMessage("vocabularyWordsChanged", async () => {
+      setWords(await sendMessage("vocabularyListWords"))
+    })
   }, [])
 
   const handleImportFile = useCallback(async (file: File) => {

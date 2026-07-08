@@ -12,6 +12,7 @@ export default class Vocabulary extends Entity {
   partOfSpeech?: string
   example?: string
   exampleTranslation?: string
+  enrichProviderId?: string
   createdAt!: number
   dueAt!: number
   intervalDays!: number

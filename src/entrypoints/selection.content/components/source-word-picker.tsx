@@ -46,7 +46,9 @@ export function SourceWordPicker({
 
     setPickStates(prev => ({ ...prev, [key]: "saving" }))
     try {
-      const translation = await onTranslateWord(word)
+      // LLM Provider：直接入库，译文和卡片内容由后台异步补全（失败下次打开生词本会重试）；
+      // 翻译类 Provider（微软/谷歌等）：接口快且稳定，仍先翻译再入库
+      const translation = basePayload.enrichProviderId ? "" : await onTranslateWord(word)
       const result = await sendMessage("vocabularySaveWord", {
         word,
         translation,

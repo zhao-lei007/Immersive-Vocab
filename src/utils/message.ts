@@ -92,6 +92,7 @@ interface ProtocolMap {
   vocabularyMarkWordSeen: (data: { id: string }) => Promise<void>
   vocabularyImportWords: (data: { words: unknown[] }) => Promise<{ imported: number, skipped: number }>
   vocabularySyncMerge: (data: { words: unknown[] }) => Promise<{ added: number, updated: number }>
+  vocabularyWordsChanged: () => void
   // tts playback
   ttsPlaybackPrepare: () => Promise<{ ok: true }>
   ttsPlaybackStart: (data: TTSPlaybackStartRequest) => Promise<TTSPlaybackStartResponse>

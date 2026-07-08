@@ -58,7 +58,8 @@ async function initApp() {
   ])
   const config = configValue ?? DEFAULT_CONFIG
 
-  const tabId = activeTab[0].id
+  // 某些场景下（如焦点在扩展页面时）可能取不到活动标签，避免直接崩掉整个 popup
+  const tabId = activeTab[0]?.id
 
   let isPageTranslated: boolean = false
   if (tabId) {

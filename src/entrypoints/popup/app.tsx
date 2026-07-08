@@ -15,6 +15,7 @@ import TranslateButton from "./components/translate-button"
 import TranslatePromptSelector from "./components/translate-prompt-selector"
 import { TranslationHubButton } from "./components/translation-hub-button"
 import TranslationModeSelector from "./components/translation-mode-selector"
+import { VocabularyBookButton } from "./components/vocabulary-book-button"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <span className="text-sm font-semibold">{i18n.t("name")}</span>
           </div>
           <div className="flex items-center">
+            <VocabularyBookButton />
             <TranslationHubButton />
           </div>
         </div>

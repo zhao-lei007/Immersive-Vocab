@@ -88,15 +88,47 @@ export async function getLastSyncedAt(): Promise<number | null> {
   return await storage.getItem<number>(LAST_SYNCED_AT_KEY)
 }
 
+// iCloud Drive 等同步盘的文件可能正在下载或被占用，读写会瞬时失败，稍等重试即可恢复
+const TRANSIENT_RETRY_ATTEMPTS = 3
+const TRANSIENT_RETRY_DELAY_MS = 500
+
+function isFileNotFoundError(error: unknown): boolean {
+  return error instanceof DOMException && error.name === "NotFoundError"
+}
+
+async function withTransientRetry<T>(operation: () => Promise<T>): Promise<T> {
+  let lastError: unknown
+  for (let attempt = 1; attempt <= TRANSIENT_RETRY_ATTEMPTS; attempt++) {
+    try {
+      return await operation()
+    }
+    catch (error) {
+      if (isFileNotFoundError(error)) {
+        throw error
+      }
+      lastError = error
+      if (attempt < TRANSIENT_RETRY_ATTEMPTS) {
+        await new Promise(resolve => setTimeout(resolve, TRANSIENT_RETRY_DELAY_MS * attempt))
+      }
+    }
+  }
+  throw lastError
+}
+
 async function readRemoteWords(handle: DirectoryHandleLike): Promise<unknown[] | null> {
   let file: File
   try {
-    const fileHandle = await handle.getFileHandle(SYNC_FILE_NAME)
-    file = await fileHandle.getFile()
+    file = await withTransientRetry(async () => {
+      const fileHandle = await handle.getFileHandle(SYNC_FILE_NAME)
+      return await fileHandle.getFile()
+    })
   }
-  catch {
-    // 文件还不存在（首次同步）
-    return null
+  catch (error) {
+    // 只有文件不存在才视为首次同步；其他读取失败要抛出，避免误把本地数据覆盖远端文件
+    if (isFileNotFoundError(error)) {
+      return null
+    }
+    throw error
   }
 
   try {
@@ -115,15 +147,17 @@ async function readRemoteWords(handle: DirectoryHandleLike): Promise<unknown[] |
 }
 
 async function writeRemoteWords(handle: DirectoryHandleLike, words: VocabularyWord[]): Promise<void> {
-  const fileHandle = await handle.getFileHandle(SYNC_FILE_NAME, { create: true })
-  const writable = await fileHandle.createWritable()
-  await writable.write(JSON.stringify({
-    format: SYNC_FORMAT,
-    version: 1,
-    updatedAt: new Date().toISOString(),
-    words,
-  }, null, 2))
-  await writable.close()
+  await withTransientRetry(async () => {
+    const fileHandle = await handle.getFileHandle(SYNC_FILE_NAME, { create: true })
+    const writable = await fileHandle.createWritable()
+    await writable.write(JSON.stringify({
+      format: SYNC_FORMAT,
+      version: 1,
+      updatedAt: new Date().toISOString(),
+      words,
+    }, null, 2))
+    await writable.close()
+  })
 }
 
 export interface SyncResult {

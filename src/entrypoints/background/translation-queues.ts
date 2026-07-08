@@ -168,7 +168,8 @@ async function createTranslationQueues<TContext>(config: TranslationQueueSetupCo
   const requestQueue = new RequestQueue({
     rate,
     capacity,
-    timeoutMs: 20_000,
+    // 本地大模型（如 MLX 上的 Qwen 35B）单次响应可能远超 20s，放宽到 90s；超时后仍会重试
+    timeoutMs: 90_000,
     maxRetries: 2,
     baseRetryDelayMs: 1_000,
   })

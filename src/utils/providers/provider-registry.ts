@@ -4,14 +4,10 @@ import type { Theme } from "@/types/config/theme"
 import type { FeatureKey } from "@/utils/constants/feature-providers"
 import type { ProviderSelectorItem, ProviderSelectorOption } from "@/utils/providers/provider-display"
 import { i18n } from "#imports"
-import readFrogLogo from "@/assets/providers/read-frog-provider.png?url&no-inline"
 import { isLLMProviderConfig, isTranslateProviderConfig } from "@/types/config/provider"
 
+// 本 fork 已移除官方托管 AI（read-frog-free-ai）；保留 id 常量用于识别历史配置
 export const FREE_AI_PROVIDER_ID = "read-frog-free-ai"
-export const FREE_AI_PROVIDER_LOGO = readFrogLogo
-
-const FREE_AI_PROVIDER_NAME_KEY = "options.apiProviders.providers.name.freeAi"
-const FREE_AI_PROVIDER_FALLBACK_NAME = "Free AI Service"
 
 export type ProviderCapability = FeatureKey | "selectionToolbar.customAction"
 type SystemProviderNameKey = keyof GeneratedI18nStructure
@@ -42,15 +38,7 @@ export type ResolvedProviderRef<T extends ProviderConfig = ProviderConfig>
   = | LocalProviderRef<T>
     | SystemProviderRef
 
-const SYSTEM_PROVIDER_DEFS = {
-  [FREE_AI_PROVIDER_ID]: {
-    id: FREE_AI_PROVIDER_ID,
-    nameKey: FREE_AI_PROVIDER_NAME_KEY,
-    fallbackName: FREE_AI_PROVIDER_FALLBACK_NAME,
-    capabilities: ["selectionToolbar.customAction"],
-    logo: () => FREE_AI_PROVIDER_LOGO,
-  },
-} as const satisfies Record<string, SystemProviderDef>
+const SYSTEM_PROVIDER_DEFS: Record<string, SystemProviderDef> = {}
 
 const LOCAL_PROVIDER_CAPABILITY_PREDICATES = {
   "translate": isTranslateProviderConfig,

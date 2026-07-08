@@ -26,7 +26,6 @@ import { selectedCustomActionIdAtom } from "../atoms"
 import { formOpts, useAppForm } from "./form"
 import { IconField } from "./icon-field"
 import { NameField } from "./name-field"
-import { NotebaseConnectionField } from "./notebase-connection-field"
 import { OutputSchemaField } from "./output-schema-field"
 import { ProviderField } from "./provider-field"
 
@@ -133,8 +132,6 @@ function CustomActionConfigEditor({ selectedAction }: { selectedAction: Selectio
           </form.AppField>
 
           <OutputSchemaField form={form} />
-
-          <NotebaseConnectionField form={form} />
         </div>
         <div className="flex justify-end mt-8">
           <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>

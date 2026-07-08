@@ -1,12 +1,11 @@
 import { Icon } from "@iconify/react"
 import { i18n } from "#imports"
-import { UserAccount } from "@/components/user-account"
+import appLogo from "@/assets/icons/read-frog.png"
+import { APP_NAME } from "@/utils/constants/app"
 import { openOptionsPage } from "@/utils/navigation"
 import { version } from "../../../package.json"
 import { AISmartContext } from "./components/ai-smart-context"
 import { AlwaysTranslate } from "./components/always-translate"
-import BlogNotification from "./components/blog-notification"
-import { DiscordButton } from "./components/discord-button"
 import LanguageOptionsSelector from "./components/language-options-selector"
 import { MoreMenu } from "./components/more-menu"
 import Hotkey from "./components/node-translation-hotkey-selector"
@@ -22,11 +21,12 @@ function App() {
     <>
       <div className="bg-background flex flex-col gap-4 px-6 pt-5 pb-4">
         <div className="flex items-center justify-between">
-          <UserAccount />
+          <div className="flex items-center gap-2">
+            <img src={appLogo} alt={APP_NAME} className="size-6 rounded" />
+            <span className="text-sm font-semibold">{i18n.t("name")}</span>
+          </div>
           <div className="flex items-center">
             <TranslationHubButton />
-            <DiscordButton />
-            <BlogNotification />
           </div>
         </div>
         <LanguageOptionsSelector />

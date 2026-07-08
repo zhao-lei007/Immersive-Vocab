@@ -634,6 +634,8 @@ export const DEFAULT_PROVIDER_CONFIG_LIST: ProvidersConfig = [
   DEFAULT_PROVIDER_CONFIG.openai,
   DEFAULT_PROVIDER_CONFIG.deepseek,
   DEFAULT_PROVIDER_CONFIG.atlascloud,
+  // 本 fork 面向本地模型用户，默认提供 OpenAI 兼容 provider（可配 Ollama/vLLM 等 baseURL）
+  DEFAULT_PROVIDER_CONFIG["openai-compatible"],
 ]
 
 export const NON_API_TRANSLATE_PROVIDER_ITEMS = pick(

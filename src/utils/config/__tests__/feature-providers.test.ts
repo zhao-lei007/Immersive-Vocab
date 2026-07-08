@@ -2,8 +2,7 @@ import type { ProviderConfig } from "@/types/config/provider"
 import { describe, expect, it } from "vitest"
 import { DEFAULT_CONFIG } from "@/utils/constants/config"
 import { buildFeatureProviderPatch } from "@/utils/constants/feature-providers"
-import { isProviderSelectorItem } from "@/utils/providers/provider-display"
-import { FREE_AI_PROVIDER_LOGO, getSelectableProvidersForCapability } from "@/utils/providers/provider-registry"
+import { getSelectableProvidersForCapability } from "@/utils/providers/provider-registry"
 import {
   computeLanguageDetectionFallbackAfterDeletion,
   computeProviderFallbacksAfterDeletion,
@@ -55,26 +54,13 @@ describe("feature providers", () => {
   })
 
   describe("getSelectableProvidersForCapability", () => {
-    it("marks registry-backed system providers for selector grouping", () => {
+    it("returns no system providers (hosted AI removed in this fork)", () => {
       const providers = getSelectableProvidersForCapability(
         "selectionToolbar.customAction",
         [],
       )
 
-      expect(providers).toEqual([
-        expect.objectContaining({
-          kind: "system",
-          id: "read-frog-free-ai",
-          logo: expect.any(Function),
-        }),
-      ])
-
-      const freeAiProvider = providers[0]
-      expect(freeAiProvider && isProviderSelectorItem(freeAiProvider)).toBe(true)
-      if (!freeAiProvider || !isProviderSelectorItem(freeAiProvider)) {
-        throw new Error("Free AI provider selector item was not returned")
-      }
-      expect(freeAiProvider.logo("light")).toBe(FREE_AI_PROVIDER_LOGO)
+      expect(providers).toEqual([])
     })
   })
 
@@ -266,7 +252,7 @@ describe("feature providers", () => {
       ])
     })
 
-    it("falls back to free AI when no enabled llm provider is available", () => {
+    it("returns null when no enabled llm provider is available", () => {
       const config = {
         ...DEFAULT_CONFIG,
         selectionToolbar: {
@@ -307,12 +293,7 @@ describe("feature providers", () => {
         remainingProviders,
       )
 
-      expect(result).toEqual([
-        expect.objectContaining({
-          id: "action-a",
-          providerId: "read-frog-free-ai",
-        }),
-      ])
+      expect(result).toBeNull()
     })
   })
 

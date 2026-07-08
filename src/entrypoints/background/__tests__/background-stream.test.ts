@@ -1,4 +1,4 @@
-import type { BackgroundStructuredObjectStreamSnapshot, BackgroundTextStreamSnapshot } from "@/types/background-stream"
+import type { BackgroundStructuredObjectStreamSnapshot } from "@/types/background-stream"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 const streamTextMock = vi.fn()
@@ -201,69 +201,7 @@ describe("background-stream", () => {
     }).success).toBe(false)
   })
 
-  it("streams hosted structured object output from background", async () => {
-    hostedStreamStructuredObjectMock.mockResolvedValue((async function* () {
-      yield { type: "start" }
-      yield { type: "text-delta", id: "text-1", text: "{\"score\":97" }
-      yield { type: "start-step", request: {}, warnings: [] }
-      yield { type: "reasoning-start", id: "reasoning-1" }
-      yield { type: "reasoning-delta", id: "reasoning-1", text: "checking context" }
-      yield { type: "reasoning-end", id: "reasoning-1" }
-      yield { type: "text-delta", id: "text-1", text: ",\"summary\":\"Strong argument structure\"}" }
-      yield { type: "finish", finishReason: "stop" }
-    })())
-
-    const chunkSnapshots: BackgroundStructuredObjectStreamSnapshot[] = []
-    const { runStructuredObjectStreamInBackground } = await import("../background-stream")
-    const result = await runStructuredObjectStreamInBackground(
-      {
-        providerId: "read-frog-free-ai",
-        instructions: "Return structured data",
-        prompt: "Analyze selection",
-        outputSchema: [
-          { name: "score", type: "number" },
-          { name: "summary", type: "string" },
-        ],
-      },
-      {
-        onChunk: (snapshot) => {
-          chunkSnapshots.push(snapshot)
-        },
-      },
-    )
-
-    expect(getModelByIdMock).not.toHaveBeenCalled()
-    expect(hostedStreamStructuredObjectMock).toHaveBeenCalledWith({
-      instructions: "Return structured data",
-      prompt: "Analyze selection",
-      outputSchema: [
-        { name: "score", type: "number" },
-        { name: "summary", type: "string" },
-      ],
-      temperature: undefined,
-    }, { signal: undefined })
-    expect(result).toEqual({
-      output: {
-        score: 97,
-        summary: "Strong argument structure",
-      },
-      thinking: {
-        status: "complete",
-        text: "checking context",
-      },
-    })
-    expect(chunkSnapshots.at(-1)).toEqual(result)
-  })
-
-  it("surfaces guest hosted rate limit errors with the sign-in message", async () => {
-    hostedStreamStructuredObjectMock.mockRejectedValue(
-      Object.assign(new Error("Too Many Requests"), {
-        code: "TOO_MANY_REQUESTS",
-        status: 429,
-        data: { quotaScope: "guest" },
-      }),
-    )
-
+  it("rejects the removed hosted AI provider for structured object streams", async () => {
     const { runStructuredObjectStreamInBackground } = await import("../background-stream")
 
     await expect(runStructuredObjectStreamInBackground({
@@ -273,7 +211,9 @@ describe("background-stream", () => {
       outputSchema: [
         { name: "score", type: "number" },
       ],
-    })).rejects.toThrow("hostedAi.errors.guestRateLimited")
+    })).rejects.toThrow("Hosted AI service is not available in this build")
+
+    expect(getModelByIdMock).not.toHaveBeenCalled()
   })
 
   it("treats structured object streams without finish as protocol errors", async () => {
@@ -419,46 +359,16 @@ describe("background-stream", () => {
     expect(mockPort.disconnect).toHaveBeenCalledTimes(1)
   })
 
-  it("streams hosted text output from background", async () => {
-    hostedStreamTextMock.mockResolvedValue((async function* () {
-      yield { type: "start" }
-      yield { type: "reasoning-start", id: "reasoning-1" }
-      yield { type: "reasoning-delta", id: "reasoning-1", text: "checking language" }
-      yield { type: "reasoning-end", id: "reasoning-1" }
-      yield { type: "text-delta", id: "text-1", text: "Hola" }
-      yield { type: "text-delta", id: "text-1", text: " mundo" }
-      yield { type: "finish", finishReason: "stop" }
-    })())
-
-    const chunkSnapshots: BackgroundTextStreamSnapshot[] = []
+  it("rejects the removed hosted AI provider for text streams", async () => {
     const { runStreamTextInBackground } = await import("../background-stream")
-    const result = await runStreamTextInBackground(
-      {
-        providerId: "read-frog-free-ai",
-        instructions: "Translate text",
-        prompt: "Hello world",
-      },
-      {
-        onChunk: (snapshot) => {
-          chunkSnapshots.push(snapshot)
-        },
-      },
-    )
+
+    await expect(runStreamTextInBackground({
+      providerId: "read-frog-free-ai",
+      instructions: "Translate",
+      prompt: "Hello",
+    })).rejects.toThrow("Hosted AI service is not available in this build")
 
     expect(getModelByIdMock).not.toHaveBeenCalled()
-    expect(hostedStreamTextMock).toHaveBeenCalledWith({
-      instructions: "Translate text",
-      prompt: "Hello world",
-      temperature: undefined,
-    }, { signal: undefined })
-    expect(result).toEqual({
-      output: "Hola mundo",
-      thinking: {
-        status: "complete",
-        text: "checking language",
-      },
-    })
-    expect(chunkSnapshots.at(-1)).toEqual(result)
   })
 
   it("prefers stream onError root cause and posts error once", async () => {

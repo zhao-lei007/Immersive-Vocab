@@ -1,10 +1,8 @@
 import "@/utils/zod-config"
 import { browser, defineBackground } from "#imports"
-import { env } from "@/env"
 import { logger } from "@/utils/logger"
 import { onMessage } from "@/utils/message"
 import { openOptionsPage } from "@/utils/navigation"
-import { SessionCacheGroupRegistry } from "@/utils/session-cache/session-cache-group-registry"
 import { runAiSegmentSubtitles } from "./ai-segmentation"
 import { setupAnalyticsMessageHandlers } from "./analytics"
 import { dispatchBackgroundStreamPort } from "./background-stream"
@@ -18,34 +16,20 @@ import { setupIframeInjection } from "./iframe-injection"
 import { setupLLMGenerateTextMessageHandlers } from "./llm-generate-text"
 import { initMockData } from "./mock-data"
 import { newUserGuide } from "./new-user-guide"
-import { setupNotebasePendingSaveProcessor } from "./notebase-pending-save"
 import { proxyFetch } from "./proxy-fetch"
 import { setupSidePanelMessageHandler } from "./side-panel"
 import { setUpSubtitlesTranslationQueue, setUpWebPageTranslationQueue } from "./translation-queues"
 import { translationMessage } from "./translation-signal"
 import { setupTTSPlaybackMessageHandlers } from "./tts-playback"
-import { setupUninstallSurvey } from "./uninstall-survey"
+import { setupVocabularyMessageHandlers } from "./vocabulary"
 
 export default defineBackground({
   type: "module",
   main: () => {
     logger.info("Hello background!", { id: browser.runtime.id })
 
-    browser.runtime.onInstalled.addListener(async (details) => {
+    browser.runtime.onInstalled.addListener(async () => {
       await ensureInitializedConfig()
-
-      // Open tutorial page when extension is installed
-      if (details.reason === "install") {
-        await browser.tabs.create({
-          url: `${env.WXT_WEBSITE_URL}/guide/step-1`,
-        })
-      }
-
-      // Clear blog cache on extension update to fetch latest blog posts
-      if (details.reason === "update") {
-        logger.info("[Background] Extension updated, clearing blog cache")
-        await SessionCacheGroupRegistry.removeCacheGroup("blog-fetch")
-      }
     })
 
     onMessage("openPage", async (message) => {
@@ -105,13 +89,12 @@ export default defineBackground({
     void setUpSubtitlesTranslationQueue()
     void setUpDatabaseCleanup()
     setUpConfigBackup()
-    void setupUninstallSurvey()
 
     proxyFetch()
-    setupNotebasePendingSaveProcessor()
     setupEdgeTTSMessageHandlers()
     setupLLMGenerateTextMessageHandlers()
     setupTTSPlaybackMessageHandlers()
+    setupVocabularyMessageHandlers()
     void initMockData()
 
     // Setup on-demand iframe injection after page translation is enabled.

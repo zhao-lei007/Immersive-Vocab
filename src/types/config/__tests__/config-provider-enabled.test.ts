@@ -51,7 +51,7 @@ describe("config provider enabled validation", () => {
     expect(issuePaths).toContain("selectionToolbar.customActions.0.providerId")
   })
 
-  it("allows free AI for custom actions", () => {
+  it("rejects the removed free AI provider for custom actions", () => {
     const result = configSchema.safeParse({
       ...DEFAULT_CONFIG,
       selectionToolbar: {
@@ -63,7 +63,7 @@ describe("config provider enabled validation", () => {
       },
     })
 
-    expect(result.success).toBe(true)
+    expect(result.success).toBe(false)
   })
 
   it("rejects free AI for selection toolbar translation", () => {

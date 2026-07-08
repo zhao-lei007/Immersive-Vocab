@@ -2,7 +2,6 @@ import type { Config } from "@/types/config/config"
 import type { FloatingButtonSide } from "@/types/config/floating-button"
 import type { SelectionToolbarCustomAction } from "@/types/config/selection-toolbar"
 import type { PageTranslateRange } from "@/types/config/translate"
-import { FREE_AI_PROVIDER_ID } from "@/utils/providers/provider-registry"
 import { CUSTOM_ACTION_TEMPLATES } from "./custom-action-templates"
 import { DEFAULT_TRANSLATE_PROMPTS_CONFIG } from "./prompt"
 import { DEFAULT_PROVIDER_CONFIG_LIST } from "./providers"
@@ -19,7 +18,7 @@ export const GOOGLE_DRIVE_TOKEN_STORAGE_KEY = "__googleDriveToken"
 
 export const THEME_STORAGE_KEY = "theme"
 export const DEFAULT_DETECTED_CODE = "eng" as const
-export const CONFIG_SCHEMA_VERSION = 83
+export const CONFIG_SCHEMA_VERSION = 84
 
 export const DEFAULT_FLOATING_BUTTON_POSITION = 0.66
 export const DEFAULT_FLOATING_BUTTON_SIDE: FloatingButtonSide = "right"
@@ -29,7 +28,8 @@ function createDefaultDictionaryAction(): SelectionToolbarCustomAction | null {
   if (!template)
     return null
 
-  const action = template.createAction(FREE_AI_PROVIDER_ID)
+  // 默认词典动作绑定 OpenAI 兼容 provider（用户配置 baseURL 即可用，含本地模型）
+  const action = template.createAction("openai-compatible-default")
   return {
     ...action,
     id: "default-dictionary",

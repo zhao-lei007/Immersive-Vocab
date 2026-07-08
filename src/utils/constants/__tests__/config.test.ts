@@ -51,6 +51,7 @@ describe("dEFAULT_CONFIG", () => {
       "openai-default",
       "deepseek-default",
       "atlascloud-default",
+      "openai-compatible-default",
     ])
     expect(DEFAULT_CONFIG.translate.providerId).toBe("microsoft-translate-default")
     expect(DEFAULT_CONFIG.selectionToolbar.features.translate.providerId).toBe("microsoft-translate-default")

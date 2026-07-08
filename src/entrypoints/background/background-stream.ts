@@ -17,11 +17,9 @@ import type {
 } from "@/types/background-stream"
 import { Output, parsePartialJson, streamText } from "ai"
 import { z } from "zod"
-import { i18n } from "#imports"
 import { BACKGROUND_STREAM_PORTS } from "@/types/background-stream"
 import { extractAISDKErrorMessage } from "@/utils/error/extract-message"
 import { logger } from "@/utils/logger"
-import { backgroundOrpcClient } from "@/utils/orpc/background-client"
 import { getModelById } from "@/utils/providers/model"
 import { isFreeAiProviderId } from "@/utils/providers/provider-registry"
 
@@ -302,46 +300,6 @@ function getStreamPartError(part: Record<string, unknown>): unknown {
     : new BackgroundStreamError("stream_protocol_error", aiStreamProtocolErrorMessage)
 }
 
-function isOrpcRateLimitError(error: unknown): boolean {
-  if (typeof error !== "object" || error === null) {
-    return false
-  }
-
-  const candidate = error as { code?: unknown, status?: unknown }
-  return candidate.status === 429 || candidate.code === "TOO_MANY_REQUESTS"
-}
-
-function getHostedAiRateLimitQuotaScope(error: unknown): "guest" | "user" | undefined {
-  if (!isRecord(error) || !isRecord(error.data)) {
-    return undefined
-  }
-
-  if (error.data.quotaScope === "guest" || error.data.quotaScope === "user") {
-    return error.data.quotaScope
-  }
-
-  return undefined
-}
-
-function getHostedAiRateLimitMessage(error: unknown): string {
-  switch (getHostedAiRateLimitQuotaScope(error)) {
-    case "guest":
-      return i18n.t("hostedAi.errors.guestRateLimited")
-    case "user":
-      return i18n.t("hostedAi.errors.userRateLimited")
-    default:
-      return i18n.t("hostedAi.errors.rateLimited")
-  }
-}
-
-function normalizeHostedAiError(error: unknown): unknown {
-  if (isOrpcRateLimitError(error)) {
-    return new BackgroundStreamError("rate_limited", getHostedAiRateLimitMessage(error), { cause: error })
-  }
-
-  return error
-}
-
 function getStreamFinishReason(part: Record<string, unknown>): string | undefined {
   return typeof part.finishReason === "string"
     ? part.finishReason
@@ -547,26 +505,12 @@ async function createLocalTextPartStream(
   return result.stream
 }
 
+// 本 fork 已移除官方托管 AI 服务；历史配置若仍指向该 provider，直接报不可用
 async function createHostedTextPartStream(
-  serializablePayload: BackgroundStreamTextSerializablePayload,
-  signal?: AbortSignal,
+  _serializablePayload: BackgroundStreamTextSerializablePayload,
+  _signal?: AbortSignal,
 ): Promise<AsyncIterable<unknown>> {
-  const { prompt, instructions, temperature } = serializablePayload
-
-  if (!instructions || !prompt) {
-    throw new BackgroundStreamError("invalid_request", "Invalid hosted AI request")
-  }
-
-  try {
-    return await backgroundOrpcClient.hostedAi.translate.streamText({
-      instructions,
-      prompt,
-      temperature,
-    }, { signal })
-  }
-  catch (error) {
-    throw normalizeHostedAiError(error)
-  }
+  throw new BackgroundStreamError("provider_not_available", "Hosted AI service is not available in this build")
 }
 
 export async function runStreamTextInBackground(
@@ -613,27 +557,12 @@ async function createLocalStructuredObjectPartStream(
   return result.stream
 }
 
+// 本 fork 已移除官方托管 AI 服务；历史配置若仍指向该 provider，直接报不可用
 async function createHostedStructuredObjectPartStream(
-  serializablePayload: BackgroundStreamStructuredObjectSerializablePayload,
-  signal?: AbortSignal,
+  _serializablePayload: BackgroundStreamStructuredObjectSerializablePayload,
+  _signal?: AbortSignal,
 ): Promise<AsyncIterable<unknown>> {
-  const { outputSchema, prompt, instructions, temperature } = serializablePayload
-
-  if (!instructions || !prompt) {
-    throw new BackgroundStreamError("invalid_request", "Invalid hosted AI request")
-  }
-
-  try {
-    return await backgroundOrpcClient.hostedAi.customAction.streamStructuredObject({
-      instructions,
-      prompt,
-      outputSchema,
-      temperature,
-    }, { signal })
-  }
-  catch (error) {
-    throw normalizeHostedAiError(error)
-  }
+  throw new BackgroundStreamError("provider_not_available", "Hosted AI service is not available in this build")
 }
 
 export async function runStructuredObjectStreamInBackground(

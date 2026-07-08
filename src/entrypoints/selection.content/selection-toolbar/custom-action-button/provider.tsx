@@ -1,10 +1,12 @@
 import type { ReactNode } from "react"
 import type { SelectionSession } from "../atoms"
+import type { VocabularySaveWordPayload } from "@/types/vocabulary"
 import { useAtomValue, useSetAtom } from "jotai"
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { toast } from "sonner"
 import { SelectionPopover } from "@/components/ui/selection-popover"
 import { ANALYTICS_FEATURE, ANALYTICS_SURFACE } from "@/types/analytics"
+import { isLLMProviderConfig } from "@/types/config/provider"
 import { createFeatureUsageContext, trackFeatureUsed } from "@/utils/analytics"
 import { configFieldsAtomMap, writeConfigAtom } from "@/utils/atoms/config"
 import { onMessage } from "@/utils/message"
@@ -13,6 +15,7 @@ import {
   resolveProviderRefForCapability,
 } from "@/utils/providers/provider-registry"
 import { shadowWrapper } from "../.."
+import { SaveWordButton } from "../../components/save-word-button"
 import { SelectionToolbarErrorAlert } from "../../components/selection-toolbar-error-alert"
 import { SelectionToolbarFooterContent } from "../../components/selection-toolbar-footer-content"
 import { SelectionToolbarTitleContent } from "../../components/selection-toolbar-title-content"
@@ -137,6 +140,36 @@ export function SelectionCustomActionProvider({
     rerunNonce,
   })
   const displayedResult = executionPlan.executionContext ? result : null
+  // 词典类动作（按 outputSchema 字段 id 前缀识别）在弹窗里提供"添加到生词本"入口：
+  // 点击立即入库；结果已出时音标/词性/释义直接进卡片，缺的字段由后台异步补全
+  const dictionarySavePayload = useMemo<VocabularySaveWordPayload | null>(() => {
+    const word = cleanSelection?.trim()
+    if (!word || !activeAction?.outputSchema.some(field => field.id.includes("dictionary-"))) {
+      return null
+    }
+
+    const fieldValue = (idSuffix: string): string | undefined => {
+      const field = activeAction.outputSchema.find(f => f.id.includes(idSuffix))
+      const raw = field ? (displayedResult as Record<string, unknown> | null)?.[field.name] : undefined
+      return typeof raw === "string" && raw.trim() !== "" ? raw.trim() : undefined
+    }
+
+    const provider = customActionRequest.provider
+    return {
+      word,
+      // 词典释义作为译文；结果还没生成完时留空，由后台补全
+      translation: fieldValue("dictionary-definition") ?? "",
+      phonetic: fieldValue("dictionary-phonetic"),
+      partOfSpeech: fieldValue("dictionary-part-of-speech"),
+      context: activeSession?.contextSnapshot.text || undefined,
+      sourceUrl: window.location.href,
+      sourceLanguage: language.sourceCode,
+      targetLanguage: language.targetCode,
+      enrichProviderId: provider?.kind === "local" && isLLMProviderConfig(provider.config)
+        ? provider.config.id
+        : undefined,
+    }
+  }, [activeAction, activeSession, cleanSelection, customActionRequest.provider, displayedResult, language])
   const displayedError = error ?? executionPlan.error
   const displayedIsRunning = (isOpen && webPageContext === undefined) || (executionPlan.executionContext ? isRunning : false)
   const displayedThinking = executionPlan.executionContext ? thinking : null
@@ -394,6 +427,9 @@ export function SelectionCustomActionProvider({
             onProviderChange={handleProviderChange}
             onRegenerate={handleRegenerate}
           >
+            {dictionarySavePayload && (
+              <SaveWordButton payload={dictionarySavePayload} />
+            )}
             {activeAction && (
               <CustomActionToolButton action={activeAction} />
             )}

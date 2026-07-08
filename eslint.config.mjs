@@ -25,6 +25,8 @@ export default antfu({
   },
   ignores: [
     "**/skills/**",
+    // 商店素材的 Remotion 工程有独立 tsconfig，不参与扩展的 lint
+    "store-assets/**",
   ],
   rules: {
     "unused-imports/no-unused-imports": "error",

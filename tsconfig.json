@@ -6,5 +6,5 @@
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true
   },
-  "exclude": ["repos"]
+  "exclude": ["repos", "store-assets"]
 }

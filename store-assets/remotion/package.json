@@ -1,0 +1,19 @@
+{
+  "name": "immersive-vocab-store-assets",
+  "private": true,
+  "description": "用 Remotion 合成 Chrome 商店截图（1280x800）",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion still shot-01 ../store/shot-01-1280x800.png && remotion still shot-02 ../store/shot-02-1280x800.png && remotion still shot-03 ../store/shot-03-1280x800.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.8.0"
+  }
+}

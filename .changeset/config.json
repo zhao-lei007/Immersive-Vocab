@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "mengxi-ream/read-frog"
+      "repo": "zhao-lei007/Immersive-Vocab"
     }
   ],
   "commit": false,

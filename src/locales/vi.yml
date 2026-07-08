@@ -11,7 +11,7 @@ contextMenu:
   readAloudSelection: Đọc to "%s"
   showOriginal: Hiển thị bản gốc
 sidePanel:
-  firefoxUserActionHint: Trong Firefox, hãy mở Read Frog từ thanh bên của trình duyệt.
+  firefoxUserActionHint: Trong Firefox, hãy mở Immersive Vocab từ thanh bên của trình duyệt.
   firefoxUserActionHelpText: Xem cách mở thanh bên Firefox
   firefoxUserActionHelpUrl: https://support.mozilla.org/vi/kb/use-sidebar-access-tools-and-vertical-tabs
 popup:
@@ -46,7 +46,7 @@ popup:
   discord:
     tooltip: Tham gia Discord để kết nối với các nhà phát triển và truy cập sớm các tính năng mới
   blog:
-    notification: Có gì mới trong Read Frog
+    notification: Có gì mới trong Immersive Vocab
   aiSmartContext: Ngữ cảnh thông minh AI
   aiSmartContextDescription: Sử dụng ngữ cảnh trang web để cải thiện chất lượng dịch. Yêu cầu nhà cung cấp dịch LLM.
   more:
@@ -306,7 +306,7 @@ options:
     floatingButton:
       globalToggle:
         title: Bật nút nổi
-        description: Hiển thị nút nổi trên các trang web để truy cập nhanh các tính năng Read Frog
+        description: Hiển thị nút nổi trên các trang web để truy cập nhanh các tính năng Immersive Vocab
       closeMenu:
         disableForSite: Tắt cho trang web này
         disableGlobally: Tắt toàn cục
@@ -669,7 +669,7 @@ options:
       fallback: Dự phòng
       selectPlaceholder: Chọn giọng nói
       noVoicesFound: Không tìm thấy giọng nói
-      previewSample: Xin chào từ Read Frog! Đây là cách tôi sẽ phát âm khi đọc to.
+      previewSample: Xin chào từ Immersive Vocab! Đây là cách tôi sẽ phát âm khi đọc to.
     languageVoice:
       label: Giọng nói theo ngôn ngữ
       reset: Đặt lại
@@ -695,11 +695,11 @@ options:
     title: Cấu hình
     about:
       title: Giới thiệu
-      description: Read Frog ra đời vào tháng 4 năm 2025
-      mission: Read Frog hướng tới việc mở rộng cơ hội tiếp cận bình đẳng với giáo dục chất lượng cao trong thời đại AI bằng cách mang lại trải nghiệm học tập gần với cảm giác được giáo viên thật hướng dẫn, nhưng với chi phí hợp lý hơn trong học ngôn ngữ, y học và các lĩnh vực giàu tri thức khác.
+      description: Immersive Vocab ra đời vào tháng 4 năm 2025
+      mission: Immersive Vocab hướng tới việc mở rộng cơ hội tiếp cận bình đẳng với giáo dục chất lượng cao trong thời đại AI bằng cách mang lại trải nghiệm học tập gần với cảm giác được giáo viên thật hướng dẫn, nhưng với chi phí hợp lý hơn trong học ngôn ngữ, y học và các lĩnh vực giàu tri thức khác.
       analytics:
         title: Giúp cải thiện trải nghiệm người dùng
-        tooltip: Khi bật, Read Frog sẽ gửi các tín hiệu sử dụng ẩn danh để xác minh tính ổn định của tính năng, tối ưu hiệu năng và độ tinh chỉnh UX, đồng thời giúp chúng tôi ưu tiên những gì cần xây tiếp theo.
+        tooltip: Khi bật, Immersive Vocab sẽ gửi các tín hiệu sử dụng ẩn danh để xác minh tính ổn định của tính năng, tối ưu hiệu năng và độ tinh chỉnh UX, đồng thời giúp chúng tôi ưu tiên những gì cần xây tiếp theo.
     sync:
       title: Đồng bộ cấu hình thủ công
       description: Nhập và xuất cài đặt cấu hình thủ công
@@ -708,7 +708,7 @@ options:
       importSuccess: Nhập cấu hình thành công
       exportSuccess: Xuất cấu hình thành công
       importError: Nhập thất bại
-      versionTooNew: Phiên bản cấu hình đã nhập mới hơn, vui lòng nâng cấp Read Frog lên phiên bản mới nhất
+      versionTooNew: Phiên bản cấu hình đã nhập mới hơn, vui lòng nâng cấp Immersive Vocab lên phiên bản mới nhất
       migrationError: Di chuyển thất bại
       validationError: Xác thực cấu hình thất bại
       exportOptions:
@@ -946,13 +946,13 @@ action:
   saveToNotebaseConnectExisting: Kết nối Notebase hiện có
   saveToNotebaseGoConfigure: Cấu hình
   saveToNotebaseLoginConnectedTitle: Đăng nhập để lưu?
-  saveToNotebaseLoginConnectedDescription: Custom Action này đang kết nối với tài khoản bên dưới. Sau khi đăng nhập, Read Frog sẽ lưu vào Notebase hiện có nếu có thể, hoặc tạo Notebase mới cho tài khoản đã đăng nhập.
+  saveToNotebaseLoginConnectedDescription: Custom Action này đang kết nối với tài khoản bên dưới. Sau khi đăng nhập, Immersive Vocab sẽ lưu vào Notebase hiện có nếu có thể, hoặc tạo Notebase mới cho tài khoản đã đăng nhập.
   saveToNotebaseConnectionUnavailableTitle: Kết nối Notebase không khả dụng
   saveToNotebaseMissingNotebaseDescription: Notebase cũ không còn tồn tại hoặc tài khoản này không mở được. Hãy tạo Notebase mới và lưu kết quả này, hoặc kết nối Notebase hiện có trong Custom AI Actions.
   saveToNotebaseAccountUnavailableDescription: Tài khoản đã đăng nhập không khớp với tài khoản đã kết nối bên dưới. Tạo và lưu sẽ thay thế kết nối trước đó cùng các ánh xạ trường. Bạn cũng có thể kết nối Notebase hiện có trong Custom AI Actions.
   saveToNotebasePendingLogin: Đăng nhập để hoàn tất lưu
-  saveToNotebasePendingLoginDescription: Sau khi đăng nhập, Read Frog sẽ tự động tạo Notebase và lưu kết quả này.
-  saveToNotebasePendingConnectedLoginDescription: Sau khi đăng nhập, Read Frog sẽ lưu vào Notebase đã kết nối nếu có thể. Nếu tài khoản này không dùng được, Read Frog sẽ tạo Notebase mới và lưu kết quả này.
+  saveToNotebasePendingLoginDescription: Sau khi đăng nhập, Immersive Vocab sẽ tự động tạo Notebase và lưu kết quả này.
+  saveToNotebasePendingConnectedLoginDescription: Sau khi đăng nhập, Immersive Vocab sẽ lưu vào Notebase đã kết nối nếu có thể. Nếu tài khoản này không dùng được, Immersive Vocab sẽ tạo Notebase mới và lưu kết quả này.
   openCustomActions: Mở Custom AI Actions
   openNotebase: Mở Notebase
   contextDetailsTitleLabel: Tiêu đề
@@ -975,7 +975,7 @@ subtitles:
     downloadTranslatedComplete: Đã tải phụ đề đã dịch
     downloadSource: Tải phụ đề gốc
   state:
-    loading: Read Frog đang tải phụ đề
+    loading: Immersive Vocab đang tải phụ đề
     error: Đã xảy ra lỗi
   errors:
     http429: 429 Đã gửi quá nhiều yêu cầu đến API phụ đề Youtube, vui lòng thử lại sau

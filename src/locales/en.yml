@@ -11,7 +11,7 @@ contextMenu:
   readAloudSelection: Read aloud "%s"
   showOriginal: Show Original
 sidePanel:
-  firefoxUserActionHint: In Firefox, open Read Frog from the browser sidebar.
+  firefoxUserActionHint: In Firefox, open Immersive Vocab from the browser sidebar.
   firefoxUserActionHelpText: Learn how to open the Firefox sidebar
   firefoxUserActionHelpUrl: https://support.mozilla.org/en-US/kb/use-sidebar-access-tools-and-vertical-tabs
 popup:
@@ -46,7 +46,7 @@ popup:
   discord:
     tooltip: Join Discord to connect with developers and get early access to new features
   blog:
-    notification: What's new in Read Frog
+    notification: What's new in Immersive Vocab
   aiSmartContext: AI Smart Context
   aiSmartContextDescription: Uses webpage context to improve translation quality. Requires LLM translation provider.
   more:
@@ -307,7 +307,7 @@ options:
     floatingButton:
       globalToggle:
         title: Enable Floating Button
-        description: Display the floating button on web pages for quick access to Read Frog features
+        description: Display the floating button on web pages for quick access to Immersive Vocab features
       closeMenu:
         disableForSite: Disable for this site
         disableGlobally: Disable globally
@@ -784,7 +784,7 @@ options:
       fallback: Fallback
       selectPlaceholder: Select a voice
       noVoicesFound: No voices found
-      previewSample: Hello from Read Frog! This is how I will sound when reading aloud.
+      previewSample: Hello from Immersive Vocab! This is how I will sound when reading aloud.
     languageVoice:
       label: Language Voice
       reset: Reset
@@ -810,11 +810,11 @@ options:
     title: Config
     about:
       title: About
-      description: Read Frog was born in April 2025
-      mission: Read Frog aims to expand equal access to high-quality education in the AI era by making learning experiences that feel closer to a real teacher affordable across language learning, medicine, and other knowledge-heavy fields.
+      description: Immersive Vocab was born in April 2025
+      mission: Immersive Vocab aims to expand equal access to high-quality education in the AI era by making learning experiences that feel closer to a real teacher affordable across language learning, medicine, and other knowledge-heavy fields.
       analytics:
         title: Help improve user experience
-        tooltip: When enabled, Read Frog sends anonymous product usage signals so we can verify feature reliability, improve performance and UX polish, and prioritize future work.
+        tooltip: When enabled, Immersive Vocab sends anonymous product usage signals so we can verify feature reliability, improve performance and UX polish, and prioritize future work.
     sync:
       title: Manual Config Sync
       description: Manually import and export your configuration settings
@@ -823,7 +823,7 @@ options:
       importSuccess: Config imported successfully
       exportSuccess: Config exported successfully
       importError: Import failed
-      versionTooNew: The imported config version is newer, please upgrade Read Frog to the latest version
+      versionTooNew: The imported config version is newer, please upgrade Immersive Vocab to the latest version
       migrationError: Migration failed
       validationError: Config validation failed
       exportOptions:
@@ -1061,13 +1061,13 @@ action:
   saveToNotebaseConnectExisting: Connect existing Notebase
   saveToNotebaseGoConfigure: Configure
   saveToNotebaseLoginConnectedTitle: Log in to save?
-  saveToNotebaseLoginConnectedDescription: This Custom Action is connected to the account below. After login, Read Frog will save to the existing Notebase when possible, or create a new Notebase for the logged-in account.
+  saveToNotebaseLoginConnectedDescription: This Custom Action is connected to the account below. After login, Immersive Vocab will save to the existing Notebase when possible, or create a new Notebase for the logged-in account.
   saveToNotebaseConnectionUnavailableTitle: Notebase connection unavailable
   saveToNotebaseMissingNotebaseDescription: The old Notebase no longer exists or cannot be opened by this account. Create a new Notebase and save this result, or connect an existing Notebase in Custom AI Actions.
   saveToNotebaseAccountUnavailableDescription: The logged-in account does not match the connected account below. Creating and saving will replace the previous connection and field mappings. You can also connect an existing Notebase in Custom AI Actions.
   saveToNotebasePendingLogin: Log in to finish saving
-  saveToNotebasePendingLoginDescription: After login, Read Frog will create the Notebase and save this result automatically.
-  saveToNotebasePendingConnectedLoginDescription: After login, Read Frog will save to the connected Notebase when possible. If this account cannot use it, Read Frog will create a new Notebase and save this result.
+  saveToNotebasePendingLoginDescription: After login, Immersive Vocab will create the Notebase and save this result automatically.
+  saveToNotebasePendingConnectedLoginDescription: After login, Immersive Vocab will save to the connected Notebase when possible. If this account cannot use it, Immersive Vocab will create a new Notebase and save this result.
   openCustomActions: Open Custom AI Actions
   openNotebase: Open Notebase
   contextDetailsTitleLabel: Title
@@ -1090,7 +1090,7 @@ subtitles:
     downloadTranslatedComplete: Translated subtitles downloaded
     downloadSource: Download source subtitles
   state:
-    loading: Read Frog loading captions
+    loading: Immersive Vocab loading captions
     error: Error occurred
   errors:
     http429: 429 Too many requests to youtube subtitle API, please try again later

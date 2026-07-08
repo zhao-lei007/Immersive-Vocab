@@ -11,7 +11,7 @@ contextMenu:
   readAloudSelection: 「%s」を読み上げ
   showOriginal: 原文を表示
 sidePanel:
-  firefoxUserActionHint: Firefox では、ブラウザーのサイドバーから Read Frog を開いてください。
+  firefoxUserActionHint: Firefox では、ブラウザーのサイドバーから イマーシブ単語帳 を開いてください。
   firefoxUserActionHelpText: Firefox サイドバーの開き方を見る
   firefoxUserActionHelpUrl: https://support.mozilla.org/ja/kb/use-sidebar-access-tools-and-vertical-tabs
 popup:
@@ -46,7 +46,7 @@ popup:
   discord:
     tooltip: Discordに参加して開発者とつながり、新機能を先行体験しましょう
   blog:
-    notification: 読書カエルの最新情報
+    notification: イマーシブ単語帳の最新情報
   aiSmartContext: AI スマートコンテキスト
   aiSmartContextDescription: ウェブページのコンテキストを使用して翻訳品質を向上させます。LLM翻訳プロバイダーが必要です。
   more:
@@ -306,7 +306,7 @@ options:
     floatingButton:
       globalToggle:
         title: フローティングボタンを有効化
-        description: ウェブページにフローティングボタンを表示し、Read Frog機能に素早くアクセス
+        description: ウェブページにフローティングボタンを表示し、イマーシブ単語帳機能に素早くアクセス
       closeMenu:
         disableForSite: このサイトで無効化
         disableGlobally: グローバルで無効化
@@ -669,7 +669,7 @@ options:
       fallback: フォールバック
       selectPlaceholder: ボイスを選択
       noVoicesFound: ボイスが見つかりません
-      previewSample: Read Frog からこんにちは！朗読するときはこのように聞こえます。
+      previewSample: イマーシブ単語帳 からこんにちは！朗読するときはこのように聞こえます。
     languageVoice:
       label: 言語別ボイス
       reset: リセット
@@ -694,12 +694,12 @@ options:
   config:
     title: 設定
     about:
-      title: Read Frog について
-      description: Read Frog は 2025 年 4 月に生まれました
-      mission: Read Frog は、AI 時代における質の高い教育機会への平等なアクセスを広げるため、語学学習、医学、その他の知識集約型分野で、実際の教師に近い学習体験を手頃な価格で提供することを目指しています。
+      title: イマーシブ単語帳 について
+      description: イマーシブ単語帳 は 2025 年 4 月に生まれました
+      mission: イマーシブ単語帳 は、AI 時代における質の高い教育機会への平等なアクセスを広げるため、語学学習、医学、その他の知識集約型分野で、実際の教師に近い学習体験を手頃な価格で提供することを目指しています。
       analytics:
         title: ユーザー体験の改善に協力する
-        tooltip: 有効にすると、Read Frog は匿名の利用シグナルを送信し、機能の安定性確認、性能や UX の改善、今後優先すべき機能の判断に役立てます。
+        tooltip: 有効にすると、イマーシブ単語帳 は匿名の利用シグナルを送信し、機能の安定性確認、性能や UX の改善、今後優先すべき機能の判断に役立てます。
     sync:
       title: 手動設定同期
       description: 手動で設定をインポート・エクスポート
@@ -708,7 +708,7 @@ options:
       importSuccess: 設定のインポートが完了しました
       exportSuccess: 設定のエクスポートが完了しました
       importError: インポートに失敗しました
-      versionTooNew: インポートされた設定のバージョンが新しいため、Read Frogを最新バージョンにアップグレードしてください
+      versionTooNew: インポートされた設定のバージョンが新しいため、イマーシブ単語帳を最新バージョンにアップグレードしてください
       migrationError: 移行に失敗しました
       validationError: 設定の検証に失敗しました
       exportOptions:
@@ -951,8 +951,8 @@ action:
   saveToNotebaseMissingNotebaseDescription: 以前の Notebase は存在しないか、このアカウントでは開けません。新しい Notebase を作成して保存するか、Custom AI Actions で既存の Notebase に接続してください。
   saveToNotebaseAccountUnavailableDescription: ログイン中のアカウントが下の接続済みアカウントと一致しません。作成して保存すると、以前の接続設定とフィールドマッピングが置き換えられます。Custom AI Actions で既存の Notebase に接続することもできます。
   saveToNotebasePendingLogin: ログイン後に保存を完了
-  saveToNotebasePendingLoginDescription: ログイン後、Read Frog が Notebase を作成し、この結果を自動で保存します。
-  saveToNotebasePendingConnectedLoginDescription: ログイン後、Read Frog は可能であれば接続済み Notebase に保存します。このアカウントで利用できない場合は、新しい Notebase を作成して保存します。
+  saveToNotebasePendingLoginDescription: ログイン後、イマーシブ単語帳 が Notebase を作成し、この結果を自動で保存します。
+  saveToNotebasePendingConnectedLoginDescription: ログイン後、イマーシブ単語帳 は可能であれば接続済み Notebase に保存します。このアカウントで利用できない場合は、新しい Notebase を作成して保存します。
   openCustomActions: Custom AI Actions を開く
   openNotebase: Notebase を開く
   contextDetailsTitleLabel: タイトル
@@ -975,7 +975,7 @@ subtitles:
     downloadTranslatedComplete: 翻訳字幕をダウンロードしました
     downloadSource: 元字幕をダウンロード
   state:
-    loading: Read Frog 字幕読み込み中
+    loading: イマーシブ単語帳 字幕読み込み中
     error: エラーが発生しました
   errors:
     http429: 429 YouTube字幕APIへのリクエストが多すぎます。しばらくしてから再試行してください

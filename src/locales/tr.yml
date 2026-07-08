@@ -11,7 +11,7 @@ contextMenu:
   readAloudSelection: '"%s" Sesli oku'
   showOriginal: Orijinali Göster
 sidePanel:
-  firefoxUserActionHint: Firefox'ta Read Frog'u tarayıcının kenar çubuğundan açın.
+  firefoxUserActionHint: Firefox'ta Immersive Vocab'u tarayıcının kenar çubuğundan açın.
   firefoxUserActionHelpText: Firefox kenar çubuğunu açmayı öğrenin
   firefoxUserActionHelpUrl: https://support.mozilla.org/tr/kb/use-sidebar-access-tools-and-vertical-tabs
 popup:
@@ -46,7 +46,7 @@ popup:
   discord:
     tooltip: Geliştiricilerle bağlantı kurmak ve yeni özelliklere erken erişim sağlamak için Discord'a katılın
   blog:
-    notification: Read Frog'da yenilikler
+    notification: Immersive Vocab'da yenilikler
   aiSmartContext: AI Akıllı Bağlam
   aiSmartContextDescription: Çeviri kalitesini artırmak için web sayfası bağlamını kullanır. LLM çeviri sağlayıcısı gerektirir.
   more:
@@ -306,7 +306,7 @@ options:
     floatingButton:
       globalToggle:
         title: Yüzen Butonu Etkinleştir
-        description: Read Frog özelliklerine hızlı erişim için web sayfalarında yüzen butonu görüntüle
+        description: Immersive Vocab özelliklerine hızlı erişim için web sayfalarında yüzen butonu görüntüle
       closeMenu:
         disableForSite: Bu site için devre dışı bırak
         disableGlobally: Genel olarak devre dışı bırak
@@ -669,7 +669,7 @@ options:
       fallback: Yedek
       selectPlaceholder: Bir ses seçin
       noVoicesFound: Ses bulunamadı
-      previewSample: Read Frog'dan merhaba! Yüksek sesle okurken böyle ses çıkaracağım.
+      previewSample: Immersive Vocab'dan merhaba! Yüksek sesle okurken böyle ses çıkaracağım.
     languageVoice:
       label: Dil Sesi
       reset: Sıfırla
@@ -695,11 +695,11 @@ options:
     title: Yapılandırma
     about:
       title: Hakkında
-      description: Read Frog Nisan 2025'te doğdu
-      mission: Read Frog, yapay zeka çağında yüksek kaliteli eğitime daha eşit erişimi genişletmek için, dil öğrenimi, tıp ve bilgi yoğun diğer alanlarda gerçek bir öğretmene daha yakın hissettiren öğrenme deneyimlerini daha ulaşılabilir maliyetlerle sunmayı hedefler.
+      description: Immersive Vocab Nisan 2025'te doğdu
+      mission: Immersive Vocab, yapay zeka çağında yüksek kaliteli eğitime daha eşit erişimi genişletmek için, dil öğrenimi, tıp ve bilgi yoğun diğer alanlarda gerçek bir öğretmene daha yakın hissettiren öğrenme deneyimlerini daha ulaşılabilir maliyetlerle sunmayı hedefler.
       analytics:
         title: Kullanıcı deneyimini geliştirmemize yardımcı ol
-        tooltip: Açık olduğunda Read Frog, özelliklerin güvenilir çalıştığını doğrulamak, performansı ve UX ayrıntılarını iyileştirmek ve sıradaki önceliklerimizi belirlemek için anonim kullanım sinyalleri gönderir.
+        tooltip: Açık olduğunda Immersive Vocab, özelliklerin güvenilir çalıştığını doğrulamak, performansı ve UX ayrıntılarını iyileştirmek ve sıradaki önceliklerimizi belirlemek için anonim kullanım sinyalleri gönderir.
     sync:
       title: Manuel Yapılandırma Senkronizasyonu
       description: Yapılandırma ayarlarınızı manuel olarak içe ve dışa aktarın
@@ -708,7 +708,7 @@ options:
       importSuccess: Yapılandırma başarıyla içe aktarıldı
       exportSuccess: Yapılandırma başarıyla dışa aktarıldı
       importError: İçe aktarma başarısız
-      versionTooNew: İçe aktarılan yapılandırma sürümü daha yeni, lütfen Read Frog'u en son sürüme yükseltin
+      versionTooNew: İçe aktarılan yapılandırma sürümü daha yeni, lütfen Immersive Vocab'u en son sürüme yükseltin
       migrationError: Geçiş başarısız
       validationError: Yapılandırma doğrulaması başarısız
       exportOptions:
@@ -951,8 +951,8 @@ action:
   saveToNotebaseMissingNotebaseDescription: Eski Notebase artık yok veya bu hesapla açılamıyor. Yeni bir Notebase oluşturup kaydedin ya da Custom AI Actions içinde mevcut bir Notebase bağlayın.
   saveToNotebaseAccountUnavailableDescription: Giriş yapılan hesap aşağıdaki bağlı hesapla eşleşmiyor. Oluşturup kaydetmek önceki bağlantıyı ve alan eşlemelerini değiştirir. Custom AI Actions içinde mevcut bir Notebase de bağlayabilirsiniz.
   saveToNotebasePendingLogin: Kaydetmeyi tamamlamak için giriş yapın
-  saveToNotebasePendingLoginDescription: Giriş yaptıktan sonra Read Frog Notebase'i oluşturur ve bu sonucu otomatik olarak kaydeder.
-  saveToNotebasePendingConnectedLoginDescription: Girişten sonra Read Frog mümkünse bağlı Notebase'e kaydeder. Bu hesap onu kullanamazsa yeni bir Notebase oluşturup kaydeder.
+  saveToNotebasePendingLoginDescription: Giriş yaptıktan sonra Immersive Vocab Notebase'i oluşturur ve bu sonucu otomatik olarak kaydeder.
+  saveToNotebasePendingConnectedLoginDescription: Girişten sonra Immersive Vocab mümkünse bağlı Notebase'e kaydeder. Bu hesap onu kullanamazsa yeni bir Notebase oluşturup kaydeder.
   openCustomActions: Custom AI Actions'ı aç
   openNotebase: Notebase'i aç
   contextDetailsTitleLabel: Başlık
@@ -975,7 +975,7 @@ subtitles:
     downloadTranslatedComplete: Çevrilmiş altyazılar indirildi
     downloadSource: Kaynak altyazıları indir
   state:
-    loading: Read Frog altyazılar yükleniyor
+    loading: Immersive Vocab altyazılar yükleniyor
     error: Bir hata oluştu
   errors:
     http429: 429 YouTube altyazı API'sine çok fazla istek gönderildi. Lütfen biraz bekleyip tekrar deneyin.

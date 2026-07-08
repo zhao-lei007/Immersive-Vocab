@@ -11,7 +11,7 @@ contextMenu:
   readAloudSelection: 朗读”%s”
   showOriginal: 显示原文
 sidePanel:
-  firefoxUserActionHint: 在 Firefox 中，请从浏览器侧边栏打开陪读蛙。
+  firefoxUserActionHint: 在 Firefox 中，请从浏览器侧边栏打开沉浸式背单词。
   firefoxUserActionHelpText: 查看 Firefox 侧边栏说明
   firefoxUserActionHelpUrl: https://support.mozilla.org/zh-CN/kb/use-sidebar-access-tools-and-vertical-tabs
 popup:
@@ -46,7 +46,7 @@ popup:
   discord:
     tooltip: 加入 Discord 与开发者交流，抢先体验新功能
   blog:
-    notification: 陪读蛙更新动态
+    notification: 沉浸式背单词更新动态
   aiSmartContext: AI 智能上下文
   aiSmartContextDescription: 结合网页上下文提升翻译效果。需要配置 LLM 翻译服务商。
   more:
@@ -307,7 +307,7 @@ options:
     floatingButton:
       globalToggle:
         title: 启用悬浮按钮
-        description: 在网页上显示悬浮按钮，快速访问陪读蛙功能
+        description: 在网页上显示悬浮按钮，快速访问沉浸式背单词功能
       closeMenu:
         disableForSite: 当前网站禁用
         disableGlobally: 全局禁用
@@ -784,7 +784,7 @@ options:
       fallback: 兜底
       selectPlaceholder: 请选择一个声音
       noVoicesFound: 未找到语音
-      previewSample: 来自 Read Frog 的问候！这是我朗读时的声音。
+      previewSample: 来自 沉浸式背单词 的问候！这是我朗读时的声音。
     languageVoice:
       label: 语言语音
       reset: 重置
@@ -810,11 +810,11 @@ options:
     title: 配置
     about:
       title: 关于
-      description: Read Frog 出生于 2025 年 4 月
-      mission: Read Frog 致力于在 AI 时代扩大高质量教育机会的平等可及性，通过更低成本地提供尽可能接近真人教师的学习体验，覆盖语言学习、医学以及其他知识密集型领域。
+      description: 沉浸式背单词 出生于 2025 年 4 月
+      mission: 沉浸式背单词 致力于在 AI 时代扩大高质量教育机会的平等可及性，通过更低成本地提供尽可能接近真人教师的学习体验，覆盖语言学习、医学以及其他知识密集型领域。
       analytics:
         title: 帮助改进用户体验
-        tooltip: 开启后，Read Frog 会发送匿名的产品使用信号，用于验证功能是否稳定、优化性能与交互细节，并帮助我们决定接下来优先投入的方向。
+        tooltip: 开启后，沉浸式背单词 会发送匿名的产品使用信号，用于验证功能是否稳定、优化性能与交互细节，并帮助我们决定接下来优先投入的方向。
     sync:
       title: 手动配置同步
       description: 手动导入和导出您的配置设置
@@ -823,7 +823,7 @@ options:
       importSuccess: 配置导入成功
       exportSuccess: 配置导出成功
       importError: 导入失败
-      versionTooNew: 导入的配置版本较新，请升级 Read Frog 到最新版本
+      versionTooNew: 导入的配置版本较新，请升级 沉浸式背单词 到最新版本
       migrationError: 迁移失败
       validationError: 配置验证失败
       exportOptions:
@@ -1066,8 +1066,8 @@ action:
   saveToNotebaseMissingNotebaseDescription: 旧笔记库不存在或当前账号无法打开。可以创建新的笔记库并保存当前结果，或去 Custom AI Actions 连接已有笔记库。
   saveToNotebaseAccountUnavailableDescription: 当前登录账号和下方已连接账号不同。选择创建并保存会替换之前的连接配置和字段映射；也可以去 Custom AI Actions 连接已有笔记库。
   saveToNotebasePendingLogin: 登录后继续保存
-  saveToNotebasePendingLoginDescription: 登录完成后，Read Frog 会自动创建笔记库并保存当前结果。
-  saveToNotebasePendingConnectedLoginDescription: 登录完成后，Read Frog 会优先保存到已连接的笔记库；如果当前账号无法使用它，会创建新的笔记库并保存当前结果。
+  saveToNotebasePendingLoginDescription: 登录完成后，沉浸式背单词 会自动创建笔记库并保存当前结果。
+  saveToNotebasePendingConnectedLoginDescription: 登录完成后，沉浸式背单词 会优先保存到已连接的笔记库；如果当前账号无法使用它，会创建新的笔记库并保存当前结果。
   openCustomActions: 打开 Custom AI Actions
   openNotebase: 打开笔记库
   contextDetailsTitleLabel: 标题
@@ -1090,7 +1090,7 @@ subtitles:
     downloadTranslatedComplete: 翻译字幕已下载
     downloadSource: 下载原字幕
   state:
-    loading: Read Frog 字幕加载中
+    loading: 沉浸式背单词 字幕加载中
     error: 发生错误
   errors:
     http429: 429 youtube 字幕接口请求次数过多，请稍后再试

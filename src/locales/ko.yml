@@ -11,7 +11,7 @@ contextMenu:
   readAloudSelection: '"%s" 읽어주기'
   showOriginal: 원문 보기
 sidePanel:
-  firefoxUserActionHint: Firefox에서는 브라우저 사이드바에서 Read Frog를 열어 주세요.
+  firefoxUserActionHint: Firefox에서는 브라우저 사이드바에서 Immersive Vocab를 열어 주세요.
   firefoxUserActionHelpText: Firefox 사이드바 여는 방법 보기
   firefoxUserActionHelpUrl: https://support.mozilla.org/ko/kb/use-sidebar-access-tools-and-vertical-tabs
 popup:
@@ -46,7 +46,7 @@ popup:
   discord:
     tooltip: Discord에 참여하여 개발자와 소통하고 새 기능을 먼저 체험하세요
   blog:
-    notification: Read Frog의 새로운 소식
+    notification: Immersive Vocab의 새로운 소식
   aiSmartContext: AI 스마트 컨텍스트
   aiSmartContextDescription: 웹페이지 컨텍스트를 사용하여 번역 품질을 향상시킵니다. LLM 번역 제공자가 필요합니다.
   more:
@@ -306,7 +306,7 @@ options:
     floatingButton:
       globalToggle:
         title: 플로팅 버튼 활성화
-        description: 웹 페이지에 플로팅 버튼을 표시하여 Read Frog 기능에 빠르게 액세스
+        description: 웹 페이지에 플로팅 버튼을 표시하여 Immersive Vocab 기능에 빠르게 액세스
       closeMenu:
         disableForSite: 이 사이트에서 비활성화
         disableGlobally: 전역 비활성화
@@ -669,7 +669,7 @@ options:
       fallback: 대체
       selectPlaceholder: 음성을 선택하세요
       noVoicesFound: 음성을 찾을 수 없습니다
-      previewSample: Read Frog의 인사입니다! 제가 읽어 드릴 때 이렇게 들립니다.
+      previewSample: Immersive Vocab의 인사입니다! 제가 읽어 드릴 때 이렇게 들립니다.
     languageVoice:
       label: 언어별 음성
       reset: 재설정
@@ -695,11 +695,11 @@ options:
     title: 설정
     about:
       title: 소개
-      description: Read Frog는 2025년 4월에 태어났습니다
-      mission: Read Frog는 언어 학습, 의학 등 지식 집약적 분야에서 AI 시대의 고품질 교육 기회에 더 평등하게 접근할 수 있도록, 실제 교사에 가까운 학습 경험을 더 낮은 비용으로 제공하는 것을 목표로 합니다.
+      description: Immersive Vocab는 2025년 4월에 태어났습니다
+      mission: Immersive Vocab는 언어 학습, 의학 등 지식 집약적 분야에서 AI 시대의 고품질 교육 기회에 더 평등하게 접근할 수 있도록, 실제 교사에 가까운 학습 경험을 더 낮은 비용으로 제공하는 것을 목표로 합니다.
       analytics:
         title: 사용자 경험 개선에 기여
-        tooltip: 켜면 Read Frog가 익명 사용 신호를 전송하여 기능 안정성을 검증하고, 성능과 UX 디테일을 개선하며, 앞으로 무엇을 우선적으로 만들지 결정하는 데 활용합니다.
+        tooltip: 켜면 Immersive Vocab가 익명 사용 신호를 전송하여 기능 안정성을 검증하고, 성능과 UX 디테일을 개선하며, 앞으로 무엇을 우선적으로 만들지 결정하는 데 활용합니다.
     sync:
       title: 수동 설정 동기화
       description: 수동으로 설정 가져오기 및 내보내기
@@ -708,7 +708,7 @@ options:
       importSuccess: 설정 가져오기 완료
       exportSuccess: 설정 내보내기 완료
       importError: 가져오기 실패
-      versionTooNew: 가져온 설정 버전이 최신이므로 Read Frog를 최신 버전으로 업그레이드해 주세요
+      versionTooNew: 가져온 설정 버전이 최신이므로 Immersive Vocab를 최신 버전으로 업그레이드해 주세요
       migrationError: 마이그레이션 실패
       validationError: 설정 검증 실패
       exportOptions:
@@ -951,8 +951,8 @@ action:
   saveToNotebaseMissingNotebaseDescription: 이전 Notebase가 없거나 이 계정에서 열 수 없습니다. 새 Notebase를 만들고 저장하거나 Custom AI Actions에서 기존 Notebase를 연결하세요.
   saveToNotebaseAccountUnavailableDescription: 로그인한 계정이 아래의 연결된 계정과 다릅니다. 만들고 저장하면 이전 연결 설정과 필드 매핑이 교체됩니다. Custom AI Actions에서 기존 Notebase를 연결할 수도 있습니다.
   saveToNotebasePendingLogin: 로그인 후 저장 완료
-  saveToNotebasePendingLoginDescription: 로그인 후 Read Frog가 Notebase를 만들고 이 결과를 자동으로 저장합니다.
-  saveToNotebasePendingConnectedLoginDescription: 로그인 후 Read Frog는 가능하면 연결된 Notebase에 저장합니다. 이 계정에서 사용할 수 없으면 새 Notebase를 만들고 저장합니다.
+  saveToNotebasePendingLoginDescription: 로그인 후 Immersive Vocab가 Notebase를 만들고 이 결과를 자동으로 저장합니다.
+  saveToNotebasePendingConnectedLoginDescription: 로그인 후 Immersive Vocab는 가능하면 연결된 Notebase에 저장합니다. 이 계정에서 사용할 수 없으면 새 Notebase를 만들고 저장합니다.
   openCustomActions: Custom AI Actions 열기
   openNotebase: Notebase 열기
   contextDetailsTitleLabel: 제목
@@ -975,7 +975,7 @@ subtitles:
     downloadTranslatedComplete: 번역 자막을 다운로드했습니다
     downloadSource: 원본 자막 다운로드
   state:
-    loading: Read Frog 자막 로딩 중
+    loading: Immersive Vocab 자막 로딩 중
     error: 오류 발생
   errors:
     http429: 429 유튜브 자막 인터페이스 요청이 너무 많습니다. 잠시 후 다시 시도해 주세요

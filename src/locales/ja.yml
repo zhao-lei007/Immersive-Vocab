@@ -1,6 +1,6 @@
-name: 読書カエル
-extName: 読書カエル - 翻訳して学ぶ
-extDescription: 読書カエルは、あらゆるウェブサイトから言語を深く学ぶために設計されたオープンソースのブラウザ拡張機能です。
+name: イマーシブ単語帳
+extName: イマーシブ単語帳 - 翻訳して覚える
+extDescription: イマーシブ単語帳は、あらゆるウェブサイトを翻訳し、読みながら新しい単語を保存して、間隔反復で記憶できるオープンソースのブラウザ拡張機能です。
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: テキスト
@@ -1207,3 +1207,29 @@ languages:
   wls: ウォリス語
   rar: ラロトンガ語
   hif: フィジー・ヒンディー語
+vocabulary:
+  title: 単語帳
+  addToVocabulary: 単語帳に追加
+  added: 追加済み
+  addedToVocabulary: 単語帳に追加しました
+  alreadyInVocabulary: すでに単語帳にあります
+  addFailed: 単語帳への追加に失敗しました
+  review: 復習
+  allWords: すべての単語
+  showAnswer: 答えを表示
+  remembered: 覚えた
+  forgot: 忘れた
+  reviewPromptTitle: ついでに復習
+  noWords: まだ単語がありません。選択テキストを翻訳し、ブックマークアイコンをタップして単語を保存しましょう。
+  noDueWords: 完了です！復習する単語はありません。
+  reviewDone: 復習が終わりました。お疲れさまでした！
+  dueCount: 復習待ち $1 語
+  totalCount: 合計 $1 語
+  highlightPageWords: ページ内の保存済み単語をハイライト
+  deleteWord: 単語を削除
+  openSource: 元のページを開く
+  export: 単語帳をエクスポート
+  import: 単語帳をインポート
+  importInvalidFile: ファイル形式が正しくありません。単語帳のエクスポート JSON を選択してください
+  importSuccess: $1 語をインポートし、重複 $2 語をスキップしました
+  importFailed: 単語帳のインポートに失敗しました

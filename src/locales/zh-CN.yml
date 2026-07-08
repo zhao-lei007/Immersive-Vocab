@@ -1,6 +1,6 @@
-name: 陪读蛙
-extName: 陪读蛙 - 翻译与学习
-extDescription: 陪读蛙是一款开放源代码的浏览器插件，旨在帮助您从任何网站深入学习语言。
+name: 沉浸式背单词
+extName: 沉浸式背单词 - 翻译与生词复习
+extDescription: 沉浸式背单词是一款开源浏览器扩展：沉浸式翻译任意网页，随手收藏生词，并用间隔重复算法随时随地复习。
 uninstallSurveyUrl: https://tally.so/r/3E9XDL
 dataTypes:
   string: 文本
@@ -1322,3 +1322,29 @@ languages:
   wls: 瓦利斯语
   rar: 拉罗汤加语
   hif: 斐济印地语
+vocabulary:
+  title: 生词本
+  addToVocabulary: 添加到生词本
+  added: 已添加
+  addedToVocabulary: 已添加到生词本
+  alreadyInVocabulary: 该词已在生词本中
+  addFailed: 添加到生词本失败
+  review: 复习
+  allWords: 全部生词
+  showAnswer: 显示答案
+  remembered: 记得
+  forgot: 忘了
+  reviewPromptTitle: 顺便复习一下
+  noWords: 还没有生词。划词翻译后点击书签图标即可收藏生词。
+  noDueWords: 太棒了！当前没有待复习的生词。
+  reviewDone: 本轮复习完成，干得漂亮！
+  dueCount: 待复习 $1 个
+  totalCount: 共 $1 个
+  highlightPageWords: 在网页中高亮生词
+  deleteWord: 删除生词
+  openSource: 打开来源页面
+  export: 导出生词本
+  import: 导入生词本
+  importInvalidFile: 文件格式不正确，请选择生词本导出的 JSON 文件
+  importSuccess: 已导入 $1 个生词，跳过 $2 个重复项
+  importFailed: 导入生词本失败

@@ -36,7 +36,6 @@ export default defineConfig({
       "storage",
       "tabs",
       "alarms",
-      "cookies",
       "contextMenus",
       "identity",
       "scripting",
@@ -63,7 +62,7 @@ export default defineConfig({
       },
       browser_specific_settings: {
         gecko: {
-          id: "{bd311a81-4530-4fcc-9178-74006155461b}",
+          id: "{16ff338c-111c-487d-b2f1-63228f6177b9}",
           strict_min_version: "112.0",
           data_collection_permissions: {
             required: ["none"],

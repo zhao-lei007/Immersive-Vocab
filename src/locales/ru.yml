@@ -1,6 +1,6 @@
-name: Read Frog
-extName: Read Frog - Переводи и учись
-extDescription: Read Frog — расширение браузера с открытым исходным кодом, которое поможет вам глубоко изучать языки на любом веб-сайте.
+name: Immersive Vocab
+extName: Immersive Vocab - Переводи и запоминай
+extDescription: "Immersive Vocab — расширение браузера с открытым исходным кодом: переводит любой сайт, сохраняет новые слова во время чтения и помогает запоминать их с помощью интервального повторения."
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Текст
@@ -1207,3 +1207,29 @@ languages:
   wls: Уоллисский
   rar: Раротонганский
   hif: Фиджийский хинди
+vocabulary:
+  title: Словарик
+  addToVocabulary: Добавить в словарик
+  added: Добавлено
+  addedToVocabulary: Добавлено в словарик
+  alreadyInVocabulary: Слово уже в словарике
+  addFailed: Не удалось добавить в словарик
+  review: Повторение
+  allWords: Все слова
+  showAnswer: Показать ответ
+  remembered: Помню
+  forgot: Забыл
+  reviewPromptTitle: Быстрое повторение
+  noWords: Слов пока нет. Переведите выделенный текст и нажмите значок закладки, чтобы сохранить слово.
+  noDueWords: Готово! Нет слов для повторения.
+  reviewDone: Повторение завершено, отличная работа!
+  dueCount: "К повторению: $1"
+  totalCount: "Всего: $1"
+  highlightPageWords: Подсвечивать сохранённые слова на страницах
+  deleteWord: Удалить слово
+  openSource: Открыть страницу-источник
+  export: Экспортировать словарик
+  import: Импортировать словарик
+  importInvalidFile: Неверный файл, ожидался JSON-экспорт словарика
+  importSuccess: "Импортировано слов: $1, пропущено дубликатов: $2"
+  importFailed: Не удалось импортировать словарик

@@ -1,6 +1,6 @@
-name: Read Frog
-extName: "Read Frog - Translate & Learn"
-extDescription: Read Frog is an open source browser extension designed to help you learn languages deeply from any website.
+name: Immersive Vocab
+extName: "Immersive Vocab - Translate & Memorize"
+extDescription: Immersive Vocab is an open source browser extension that translates any website, lets you save new words as you read, and helps you memorize them with spaced repetition.
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Text
@@ -1322,3 +1322,29 @@ languages:
   wls: Wallisian
   rar: Rarotongan
   hif: Fiji Hindi
+vocabulary:
+  title: Vocabulary Book
+  addToVocabulary: Add to vocabulary book
+  added: Added
+  addedToVocabulary: Added to vocabulary book
+  alreadyInVocabulary: Already in vocabulary book
+  addFailed: Failed to add to vocabulary book
+  review: Review
+  allWords: All words
+  showAnswer: Show answer
+  remembered: Got it
+  forgot: Forgot
+  reviewPromptTitle: Quick review
+  noWords: No words yet. Translate a selection and tap the bookmark icon to save words.
+  noDueWords: All done! No words due for review.
+  reviewDone: Review finished, great job!
+  dueCount: $1 words due
+  totalCount: $1 words
+  highlightPageWords: Highlight saved words on pages
+  deleteWord: Delete word
+  openSource: Open source page
+  export: Export vocabulary
+  import: Import vocabulary
+  importInvalidFile: Invalid file, expected a vocabulary JSON export
+  importSuccess: Imported $1 words, skipped $2 duplicates
+  importFailed: Failed to import vocabulary

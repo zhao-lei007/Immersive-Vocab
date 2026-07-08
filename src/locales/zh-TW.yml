@@ -1,6 +1,6 @@
-name: 陪讀蛙
-extName: 陪讀蛙 - 翻譯與學習
-extDescription: 陪讀蛙是一款開放原始碼的瀏覽器擴充功能，能協助使用者在任何網站上深入學習語言。
+name: 沉浸式背單詞
+extName: 沉浸式背單詞 - 翻譯與生詞複習
+extDescription: 沉浸式背單詞是一款開源瀏覽器擴充功能：沉浸式翻譯任意網頁，隨手收藏生詞，並用間隔重複演算法隨時隨地複習。
 uninstallSurveyUrl: https://tally.so/r/3E9XDL
 dataTypes:
   string: 文字
@@ -1322,3 +1322,29 @@ languages:
   wls: 瓦利斯語
   rar: 庫克群島毛利語
   hif: 斐濟印地語
+vocabulary:
+  title: 生詞本
+  addToVocabulary: 加入生詞本
+  added: 已加入
+  addedToVocabulary: 已加入生詞本
+  alreadyInVocabulary: 該詞已在生詞本中
+  addFailed: 加入生詞本失敗
+  review: 複習
+  allWords: 全部生詞
+  showAnswer: 顯示答案
+  remembered: 記得
+  forgot: 忘了
+  reviewPromptTitle: 順便複習一下
+  noWords: 還沒有生詞。劃詞翻譯後點擊書籤圖示即可收藏生詞。
+  noDueWords: 太棒了！目前沒有待複習的生詞。
+  reviewDone: 本輪複習完成，做得好！
+  dueCount: 待複習 $1 個
+  totalCount: 共 $1 個
+  highlightPageWords: 在網頁中標示生詞
+  deleteWord: 刪除生詞
+  openSource: 開啟來源頁面
+  export: 匯出生詞本
+  import: 匯入生詞本
+  importInvalidFile: 檔案格式不正確，請選擇生詞本匯出的 JSON 檔案
+  importSuccess: 已匯入 $1 個生詞，略過 $2 個重複項
+  importFailed: 匯入生詞本失敗

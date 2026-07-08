@@ -1,6 +1,6 @@
-name: Read Frog
-extName: Read Frog - Çevir ve Öğren
-extDescription: Read Frog, herhangi bir web sitesinden dilleri derinlemesine öğrenmenize yardımcı olmak için tasarlanmış açık kaynaklı bir tarayıcı uzantısıdır.
+name: Immersive Vocab
+extName: Immersive Vocab - Çevir ve Ezberle
+extDescription: Immersive Vocab, herhangi bir web sitesini çeviren, okurken yeni kelimeleri kaydetmenizi sağlayan ve aralıklı tekrar ile ezberlemenize yardımcı olan açık kaynaklı bir tarayıcı uzantısıdır.
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Metin
@@ -1207,3 +1207,29 @@ languages:
   wls: Wallis Dili
   rar: Rarotongan
   hif: Fiji Hintçesi
+vocabulary:
+  title: Kelime Defteri
+  addToVocabulary: Kelime defterine ekle
+  added: Eklendi
+  addedToVocabulary: Kelime defterine eklendi
+  alreadyInVocabulary: Bu kelime zaten kelime defterinde
+  addFailed: Kelime defterine eklenemedi
+  review: Tekrar
+  allWords: Tüm kelimeler
+  showAnswer: Cevabı göster
+  remembered: Hatırladım
+  forgot: Unuttum
+  reviewPromptTitle: Hızlı tekrar
+  noWords: Henüz kelime yok. Seçili metni çevirin ve kelimeleri kaydetmek için yer imi simgesine dokunun.
+  noDueWords: Tamamlandı! Tekrar edilecek kelime yok.
+  reviewDone: Tekrar bitti, harika iş!
+  dueCount: $1 kelime tekrar bekliyor
+  totalCount: $1 kelime
+  highlightPageWords: Kaydedilen kelimeleri sayfalarda vurgula
+  deleteWord: Kelimeyi sil
+  openSource: Kaynak sayfayı aç
+  export: Kelime defterini dışa aktar
+  import: Kelime defterini içe aktar
+  importInvalidFile: Geçersiz dosya, kelime defteri JSON dışa aktarımı bekleniyordu
+  importSuccess: "$1 kelime içe aktarıldı, $2 kopya atlandı"
+  importFailed: Kelime defteri içe aktarılamadı

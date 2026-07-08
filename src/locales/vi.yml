@@ -1,6 +1,6 @@
-name: Read Frog
-extName: Read Frog - Dịch và học
-extDescription: Read Frog là tiện ích mở rộng trình duyệt mã nguồn mở được thiết kế để giúp bạn học ngôn ngữ sâu từ bất kỳ trang web nào.
+name: Immersive Vocab
+extName: Immersive Vocab - Dịch và ghi nhớ
+extDescription: "Immersive Vocab là tiện ích mở rộng trình duyệt mã nguồn mở: dịch mọi trang web, lưu từ mới khi bạn đọc và giúp bạn ghi nhớ chúng bằng phương pháp lặp lại ngắt quãng."
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Văn bản
@@ -1207,3 +1207,29 @@ languages:
   wls: Tiếng Wallis
   rar: Tiếng Rarotongan
   hif: Tiếng Hindi Fiji
+vocabulary:
+  title: Sổ từ vựng
+  addToVocabulary: Thêm vào sổ từ vựng
+  added: Đã thêm
+  addedToVocabulary: Đã thêm vào sổ từ vựng
+  alreadyInVocabulary: Từ này đã có trong sổ từ vựng
+  addFailed: Không thể thêm vào sổ từ vựng
+  review: Ôn tập
+  allWords: Tất cả từ
+  showAnswer: Hiện đáp án
+  remembered: Nhớ rồi
+  forgot: Quên mất
+  reviewPromptTitle: Ôn nhanh một chút
+  noWords: Chưa có từ nào. Hãy dịch đoạn văn bản được chọn rồi nhấn biểu tượng đánh dấu để lưu từ.
+  noDueWords: Xong rồi! Không có từ nào cần ôn tập.
+  reviewDone: Đã hoàn thành lượt ôn tập, làm tốt lắm!
+  dueCount: $1 từ cần ôn
+  totalCount: $1 từ
+  highlightPageWords: Tô sáng từ đã lưu trên trang
+  deleteWord: Xóa từ
+  openSource: Mở trang nguồn
+  export: Xuất sổ từ vựng
+  import: Nhập sổ từ vựng
+  importInvalidFile: Tệp không hợp lệ, cần tệp JSON xuất từ sổ từ vựng
+  importSuccess: Đã nhập $1 từ, bỏ qua $2 từ trùng lặp
+  importFailed: Không thể nhập sổ từ vựng

@@ -33,6 +33,7 @@ describe("selection toolbar text wrapping", () => {
             translatedText={translatedText}
             isTranslating={false}
             thinking={null}
+            saveWordPayload={null}
           />
         </div>
       </TooltipProvider>,

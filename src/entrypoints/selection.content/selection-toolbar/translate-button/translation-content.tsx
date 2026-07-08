@@ -1,8 +1,11 @@
 import type { ThinkingSnapshot } from "@/types/background-stream"
+import type { VocabularySaveWordPayload } from "@/types/vocabulary"
 import { IconLoader2 } from "@tabler/icons-react"
 import { Activity } from "react"
 import { Thinking } from "@/components/thinking"
 import { CopyButton } from "../../components/copy-button"
+import { DueReviewCard } from "../../components/due-review-card"
+import { SaveWordButton } from "../../components/save-word-button"
 import { SelectionSourceContent } from "../../components/selection-source-content"
 import { SpeakButton } from "../../components/speak-button"
 
@@ -11,6 +14,7 @@ interface TranslationContentProps {
   translatedText: string | undefined
   isTranslating: boolean
   thinking: ThinkingSnapshot | null
+  saveWordPayload: VocabularySaveWordPayload | null
 }
 
 export function TranslationContent({
@@ -18,28 +22,37 @@ export function TranslationContent({
   translatedText,
   isTranslating,
   thinking,
+  saveWordPayload,
 }: TranslationContentProps) {
   const showLoadingIndicator = isTranslating && !thinking && !translatedText
   const showStreamingIndicator = isTranslating && !thinking && translatedText
+  const isTranslationDone = !!translatedText && !isTranslating
   return (
-    <div className="p-4">
-      <SelectionSourceContent text={selectionContent} separatorClassName="mb-3" />
-      <div className="space-y-2">
-        {thinking && (
-          <Thinking status={thinking.status} content={thinking.text} />
-        )}
-        <p className="text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere]">
-          {showLoadingIndicator && <IconLoader2 className="inline size-4 animate-spin" strokeWidth={1.6} />}
-          {translatedText}
-          {showStreamingIndicator && " ●"}
-        </p>
-        <Activity mode={translatedText ? "visible" : "hidden"}>
-          <div className="flex items-center gap-1">
-            <CopyButton text={translatedText} />
-            <SpeakButton text={translatedText} />
-          </div>
-        </Activity>
+    <>
+      <div className="p-4">
+        <SelectionSourceContent text={selectionContent} separatorClassName="mb-3" />
+        <div className="space-y-2">
+          {thinking && (
+            <Thinking status={thinking.status} content={thinking.text} />
+          )}
+          <p className="text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere]">
+            {showLoadingIndicator && <IconLoader2 className="inline size-4 animate-spin" strokeWidth={1.6} />}
+            {translatedText}
+            {showStreamingIndicator && " ●"}
+          </p>
+          <Activity mode={translatedText ? "visible" : "hidden"}>
+            <div className="flex items-center gap-1">
+              <CopyButton text={translatedText} />
+              <SpeakButton text={translatedText} />
+              <SaveWordButton payload={isTranslationDone ? saveWordPayload : null} />
+            </div>
+          </Activity>
+        </div>
       </div>
-    </div>
+      <DueReviewCard
+        active={isTranslationDone}
+        excludeWord={saveWordPayload?.word}
+      />
+    </>
   )
 }

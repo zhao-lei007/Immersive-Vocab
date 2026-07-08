@@ -4,6 +4,7 @@ import type { SelectionSession, SelectionToolbarTranslateRequestSlice } from "..
 import type { SelectionToolbarInlineError } from "../inline-error"
 import type { BackgroundTextStreamSnapshot, ThinkingSnapshot } from "@/types/background-stream"
 import type { LLMProviderConfig, ProviderConfig } from "@/types/config/provider"
+import type { VocabularySaveWordPayload } from "@/types/vocabulary"
 import { LANG_CODE_TO_EN_NAME } from "@read-frog/definitions"
 import { HotkeyManager } from "@tanstack/hotkeys"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -218,6 +219,28 @@ export function SelectionTranslationProvider({
     () => JSON.stringify(translateRequest),
     [translateRequest],
   )
+  const saveWordPayload = useMemo<VocabularySaveWordPayload | null>(() => {
+    const word = selectionText?.trim()
+    const translation = translatedText?.trim()
+    if (!word || !translation) {
+      return null
+    }
+
+    const provider = translateRequest.provider
+    const enrichProviderId = provider?.kind === "local" && isLLMProviderConfig(provider.config)
+      ? provider.config.id
+      : undefined
+
+    return {
+      word,
+      translation,
+      context: activeSession?.contextSnapshot.text ?? undefined,
+      sourceUrl: window.location.href,
+      sourceLanguage: translateRequest.language.sourceCode,
+      targetLanguage: translateRequest.language.targetCode,
+      enrichProviderId,
+    }
+  }, [activeSession, selectionText, translatedText, translateRequest])
 
   const resetPopoverSession = useCallback((options?: { clearAnchor?: boolean }) => {
     setActiveSession(null)
@@ -605,6 +628,7 @@ export function SelectionTranslationProvider({
               translatedText={translatedText}
               isTranslating={isTranslating}
               thinking={thinking}
+              saveWordPayload={saveWordPayload}
             />
             <SelectionToolbarErrorAlert error={error} className="-mt-3" />
           </SelectionPopover.Body>

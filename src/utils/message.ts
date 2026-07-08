@@ -18,6 +18,12 @@ import type {
   TTSPlaybackStartResponse,
   TTSPlaybackStopRequest,
 } from "@/types/tts-playback"
+import type {
+  VocabularyHighlightWord,
+  VocabularySaveWordPayload,
+  VocabularySaveWordResult,
+  VocabularyWord,
+} from "@/types/vocabulary"
 import type { EdgeTTSVoice } from "@/utils/server/edge-tts/types"
 import { defineExtensionMessaging } from "@webext-core/messaging"
 
@@ -76,6 +82,15 @@ interface ProtocolMap {
   edgeTtsSynthesize: (data: EdgeTTSSynthesizeRequest) => Promise<EdgeTTSSynthesizeWireResponse>
   edgeTtsListVoices: () => Promise<EdgeTTSVoice[]>
   edgeTtsHealthCheck: () => Promise<EdgeTTSHealthStatus>
+  // vocabulary book
+  vocabularySaveWord: (data: VocabularySaveWordPayload) => Promise<VocabularySaveWordResult>
+  vocabularyListWords: () => Promise<VocabularyWord[]>
+  vocabularyDueWords: (data: { limit: number, excludeWord?: string }) => Promise<VocabularyWord[]>
+  vocabularyReviewWord: (data: { id: string, remembered: boolean }) => Promise<VocabularyWord | null>
+  vocabularyDeleteWord: (data: { id: string }) => Promise<void>
+  vocabularyHighlightWords: () => Promise<VocabularyHighlightWord[]>
+  vocabularyMarkWordSeen: (data: { id: string }) => Promise<void>
+  vocabularyImportWords: (data: { words: unknown[] }) => Promise<{ imported: number, skipped: number }>
   // tts playback
   ttsPlaybackPrepare: () => Promise<{ ok: true }>
   ttsPlaybackStart: (data: TTSPlaybackStartRequest) => Promise<TTSPlaybackStartResponse>

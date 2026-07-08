@@ -4,6 +4,7 @@ import { LANG_CODE_TO_EN_NAME } from "@read-frog/definitions"
 import { db } from "@/utils/db/dexie/db"
 import { logger } from "@/utils/logger"
 import { onMessage } from "@/utils/message"
+import { isWordRecordChanged, mergeWordRecords } from "@/utils/vocabulary/merge"
 import { initialSrsSchedule, nextSrsSchedule } from "@/utils/vocabulary/srs"
 import { runGenerateTextInBackground } from "./llm-generate-text"
 
@@ -155,6 +156,43 @@ export function setupVocabularyMessageHandlers() {
 
   onMessage("vocabularyMarkWordSeen", async (message) => {
     await db.vocabulary.update(message.data.id, { lastSeenAt: Date.now() })
+  })
+
+  // 跨设备同步：远端记录与本地按单词合并（复习进度取更新的一方）
+  onMessage("vocabularySyncMerge", async (message) => {
+    const now = Date.now()
+    const existingRecords = await db.vocabulary.toArray()
+    const byWord = new Map(existingRecords.map(record => [record.word, record]))
+    const existingIds = new Set(existingRecords.map(record => record.id))
+    let added = 0
+    let updated = 0
+
+    for (const item of message.data.words) {
+      const sanitized = sanitizeImportedWord(item, now)
+      if (!sanitized) {
+        continue
+      }
+
+      const local = byWord.get(sanitized.word)
+      if (!local) {
+        if (existingIds.has(sanitized.id)) {
+          sanitized.id = crypto.randomUUID()
+        }
+        existingIds.add(sanitized.id)
+        byWord.set(sanitized.word, sanitized)
+        await db.vocabulary.add(sanitized)
+        added++
+        continue
+      }
+
+      const merged = mergeWordRecords(local, sanitized)
+      if (isWordRecordChanged(local, merged)) {
+        await db.vocabulary.put({ ...merged, id: local.id } as Vocabulary)
+        updated++
+      }
+    }
+
+    return { added, updated }
   })
 
   onMessage("vocabularyImportWords", async (message) => {

@@ -1234,3 +1234,11 @@ vocabulary:
   importSuccess: "$1 kelime içe aktarıldı, $2 kopya atlandı"
   importFailed: Kelime defteri içe aktarılamadı
   pickFromSource: Orijinal metindeki bir kelimeye dokunarak onu tek başına kaydedin
+  syncFolderTitle: Eşitleme klasörü (iCloud / bulut sürücü)
+  chooseSyncFolder: Klasör seç
+  syncNow: Şimdi eşitle
+  syncGrant: Eşitleme erişimini geri yükle
+  syncDisconnect: Bağlantıyı kes
+  syncSuccess: "Eşitlendi: $1 eklendi, $2 güncellendi"
+  syncFailed: Eşitleme başarısız
+  syncLastAt: Son eşitleme $1

@@ -1234,3 +1234,11 @@ vocabulary:
   importSuccess: "Импортировано слов: $1, пропущено дубликатов: $2"
   importFailed: Не удалось импортировать словарик
   pickFromSource: Нажмите на слово в оригинальном тексте, чтобы сохранить его отдельно
+  syncFolderTitle: Папка синхронизации (iCloud / облако)
+  chooseSyncFolder: Выбрать папку
+  syncNow: Синхронизировать
+  syncGrant: Восстановить доступ
+  syncDisconnect: Отключить
+  syncSuccess: "Синхронизировано: добавлено $1, обновлено $2"
+  syncFailed: Ошибка синхронизации
+  syncLastAt: Последняя синхронизация $1

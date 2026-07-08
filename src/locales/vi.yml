@@ -1234,3 +1234,11 @@ vocabulary:
   importSuccess: Đã nhập $1 từ, bỏ qua $2 từ trùng lặp
   importFailed: Không thể nhập sổ từ vựng
   pickFromSource: Nhấn vào một từ trong văn bản gốc để lưu riêng từ đó
+  syncFolderTitle: Thư mục đồng bộ (iCloud / ổ đám mây)
+  chooseSyncFolder: Chọn thư mục
+  syncNow: Đồng bộ ngay
+  syncGrant: Khôi phục quyền đồng bộ
+  syncDisconnect: Ngắt kết nối
+  syncSuccess: "Đã đồng bộ: thêm $1, cập nhật $2"
+  syncFailed: Đồng bộ thất bại
+  syncLastAt: Đồng bộ lần cuối $1

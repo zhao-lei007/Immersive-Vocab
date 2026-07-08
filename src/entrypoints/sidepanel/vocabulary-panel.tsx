@@ -11,6 +11,7 @@ import {
   getVocabularyHighlightEnabled,
   setVocabularyHighlightEnabled,
 } from "@/utils/vocabulary/highlight-storage"
+import { SyncFolderSection } from "./sync-folder-section"
 
 type PanelView = "review" | "list"
 
@@ -398,6 +399,7 @@ export function VocabularyPanel() {
           </Button>
         </div>
         <HighlightToggle />
+        <SyncFolderSection onSynced={setWords} />
       </header>
       {isLoaded && (
         view === "review"

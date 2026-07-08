@@ -1234,3 +1234,11 @@ vocabulary:
   importSuccess: $1 語をインポートし、重複 $2 語をスキップしました
   importFailed: 単語帳のインポートに失敗しました
   pickFromSource: 原文の単語をタップすると、その単語だけを単語帳に追加できます
+  syncFolderTitle: 同期フォルダ（iCloud / クラウドドライブ）
+  chooseSyncFolder: フォルダを選択
+  syncNow: 今すぐ同期
+  syncGrant: 同期アクセスを復元
+  syncDisconnect: 解除
+  syncSuccess: 同期完了：追加 $1、更新 $2
+  syncFailed: 同期に失敗しました
+  syncLastAt: 最終同期 $1

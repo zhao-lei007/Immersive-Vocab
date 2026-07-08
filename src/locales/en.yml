@@ -1349,3 +1349,11 @@ vocabulary:
   importSuccess: Imported $1 words, skipped $2 duplicates
   importFailed: Failed to import vocabulary
   pickFromSource: Tap a word in the original text to save it alone
+  syncFolderTitle: Sync folder (iCloud / cloud drive)
+  chooseSyncFolder: Choose folder
+  syncNow: Sync now
+  syncGrant: Restore sync access
+  syncDisconnect: Disconnect
+  syncSuccess: "Synced: $1 added, $2 updated"
+  syncFailed: Sync failed
+  syncLastAt: Last synced $1

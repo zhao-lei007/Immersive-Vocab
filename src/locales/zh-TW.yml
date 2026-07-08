@@ -1349,3 +1349,11 @@ vocabulary:
   importSuccess: 已匯入 $1 個生詞，略過 $2 個重複項
   importFailed: 匯入生詞本失敗
   pickFromSource: 點擊原文中的單詞，可單獨加入生詞本
+  syncFolderTitle: 同步資料夾（iCloud/雲端硬碟）
+  chooseSyncFolder: 選擇資料夾
+  syncNow: 立即同步
+  syncGrant: 恢復同步授權
+  syncDisconnect: 中斷連結
+  syncSuccess: 同步完成：新增 $1、更新 $2
+  syncFailed: 同步失敗
+  syncLastAt: 上次同步 $1

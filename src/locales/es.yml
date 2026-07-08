@@ -1349,3 +1349,11 @@ vocabulary:
   importSuccess: Se importaron $1 palabras, se omitieron $2 duplicadas
   importFailed: No se pudo importar el vocabulario
   pickFromSource: Toca una palabra del texto original para guardarla individualmente
+  syncFolderTitle: Carpeta de sincronización (iCloud / nube)
+  chooseSyncFolder: Elegir carpeta
+  syncNow: Sincronizar ahora
+  syncGrant: Restaurar acceso
+  syncDisconnect: Desconectar
+  syncSuccess: "Sincronizado: $1 añadidas, $2 actualizadas"
+  syncFailed: Error de sincronización
+  syncLastAt: Última sincronización $1

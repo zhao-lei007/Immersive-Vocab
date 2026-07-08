@@ -1233,3 +1233,4 @@ vocabulary:
   importInvalidFile: Tệp không hợp lệ, cần tệp JSON xuất từ sổ từ vựng
   importSuccess: Đã nhập $1 từ, bỏ qua $2 từ trùng lặp
   importFailed: Không thể nhập sổ từ vựng
+  pickFromSource: Nhấn vào một từ trong văn bản gốc để lưu riêng từ đó

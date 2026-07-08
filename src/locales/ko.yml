@@ -1233,3 +1233,4 @@ vocabulary:
   importInvalidFile: 파일 형식이 올바르지 않습니다. 단어장 내보내기 JSON 파일을 선택하세요
   importSuccess: $1개 단어를 가져오고 중복 $2개를 건너뛰었습니다
   importFailed: 단어장 가져오기에 실패했습니다
+  pickFromSource: 원문에서 단어를 탭하면 해당 단어만 단어장에 추가됩니다

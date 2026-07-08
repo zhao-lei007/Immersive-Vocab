@@ -7,6 +7,7 @@ import { CopyButton } from "../../components/copy-button"
 import { DueReviewCard } from "../../components/due-review-card"
 import { SaveWordButton } from "../../components/save-word-button"
 import { SelectionSourceContent } from "../../components/selection-source-content"
+import { SourceWordPicker } from "../../components/source-word-picker"
 import { SpeakButton } from "../../components/speak-button"
 
 interface TranslationContentProps {
@@ -15,6 +16,7 @@ interface TranslationContentProps {
   isTranslating: boolean
   thinking: ThinkingSnapshot | null
   saveWordPayload: VocabularySaveWordPayload | null
+  onTranslateWord: (word: string) => Promise<string>
 }
 
 export function TranslationContent({
@@ -23,6 +25,7 @@ export function TranslationContent({
   isTranslating,
   thinking,
   saveWordPayload,
+  onTranslateWord,
 }: TranslationContentProps) {
   const showLoadingIndicator = isTranslating && !thinking && !translatedText
   const showStreamingIndicator = isTranslating && !thinking && translatedText
@@ -49,6 +52,12 @@ export function TranslationContent({
           </Activity>
         </div>
       </div>
+      <SourceWordPicker
+        sourceText={selectionContent}
+        active={isTranslationDone}
+        basePayload={saveWordPayload}
+        onTranslateWord={onTranslateWord}
+      />
       <DueReviewCard
         active={isTranslationDone}
         excludeWord={saveWordPayload?.word}

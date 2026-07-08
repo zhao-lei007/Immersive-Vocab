@@ -1348,3 +1348,4 @@ vocabulary:
   importInvalidFile: 文件格式不正确，请选择生词本导出的 JSON 文件
   importSuccess: 已导入 $1 个生词，跳过 $2 个重复项
   importFailed: 导入生词本失败
+  pickFromSource: 点击原文中的单词，可单独加入生词本

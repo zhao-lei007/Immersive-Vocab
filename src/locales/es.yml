@@ -1348,3 +1348,4 @@ vocabulary:
   importInvalidFile: Archivo no válido, se esperaba un JSON exportado de vocabulario
   importSuccess: Se importaron $1 palabras, se omitieron $2 duplicadas
   importFailed: No se pudo importar el vocabulario
+  pickFromSource: Toca una palabra del texto original para guardarla individualmente

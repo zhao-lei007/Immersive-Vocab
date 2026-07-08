@@ -34,6 +34,7 @@ describe("selection toolbar text wrapping", () => {
             isTranslating={false}
             thinking={null}
             saveWordPayload={null}
+            onTranslateWord={async () => ""}
           />
         </div>
       </TooltipProvider>,

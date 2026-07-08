@@ -1233,3 +1233,4 @@ vocabulary:
   importInvalidFile: ファイル形式が正しくありません。単語帳のエクスポート JSON を選択してください
   importSuccess: $1 語をインポートし、重複 $2 語をスキップしました
   importFailed: 単語帳のインポートに失敗しました
+  pickFromSource: 原文の単語をタップすると、その単語だけを単語帳に追加できます

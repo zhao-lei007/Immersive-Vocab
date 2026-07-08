@@ -219,6 +219,22 @@ export function SelectionTranslationProvider({
     () => JSON.stringify(translateRequest),
     [translateRequest],
   )
+  const translateSingleWord = useCallback(async (word: string) => {
+    const provider = translateRequest.provider
+    if (provider?.kind !== "local" || !isTranslateProviderConfig(provider.config)) {
+      throw new Error("No translate provider available")
+    }
+
+    // 复用翻译队列和缓存，单词翻译对所有 Provider 类型都可用
+    return await translateTextCore({
+      text: word,
+      langConfig: translateRequest.language,
+      providerConfig: provider.config,
+      enableAIContentAware: false,
+      extraHashTags: ["vocabularyWordLookup"],
+    })
+  }, [translateRequest])
+
   const saveWordPayload = useMemo<VocabularySaveWordPayload | null>(() => {
     const word = selectionText?.trim()
     const translation = translatedText?.trim()
@@ -629,6 +645,7 @@ export function SelectionTranslationProvider({
               isTranslating={isTranslating}
               thinking={thinking}
               saveWordPayload={saveWordPayload}
+              onTranslateWord={translateSingleWord}
             />
             <SelectionToolbarErrorAlert error={error} className="-mt-3" />
           </SelectionPopover.Body>

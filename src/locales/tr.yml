@@ -1233,3 +1233,4 @@ vocabulary:
   importInvalidFile: Geçersiz dosya, kelime defteri JSON dışa aktarımı bekleniyordu
   importSuccess: "$1 kelime içe aktarıldı, $2 kopya atlandı"
   importFailed: Kelime defteri içe aktarılamadı
+  pickFromSource: Orijinal metindeki bir kelimeye dokunarak onu tek başına kaydedin

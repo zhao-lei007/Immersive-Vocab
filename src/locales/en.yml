@@ -1348,3 +1348,4 @@ vocabulary:
   importInvalidFile: Invalid file, expected a vocabulary JSON export
   importSuccess: Imported $1 words, skipped $2 duplicates
   importFailed: Failed to import vocabulary
+  pickFromSource: Tap a word in the original text to save it alone

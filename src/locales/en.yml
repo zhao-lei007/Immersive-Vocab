@@ -1,6 +1,6 @@
 name: Immersive Vocab
 extName: "Immersive Vocab - Translate & Memorize"
-extDescription: Immersive Vocab is an open source browser extension that translates any website, lets you save new words as you read, and helps you memorize them with spaced repetition.
+extDescription: Translate any website, save new words as you read, and memorize them with spaced repetition. Open source.
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Text

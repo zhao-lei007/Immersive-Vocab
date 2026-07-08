@@ -1,6 +1,6 @@
 name: Immersive Vocab
 extName: Immersive Vocab - Переводи и запоминай
-extDescription: "Immersive Vocab — расширение браузера с открытым исходным кодом: переводит любой сайт, сохраняет новые слова во время чтения и помогает запоминать их с помощью интервального повторения."
+extDescription: Переводит любой сайт, сохраняет новые слова во время чтения и помогает запоминать их с интервальным повторением.
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Текст

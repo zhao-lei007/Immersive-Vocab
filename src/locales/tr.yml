@@ -1,6 +1,6 @@
 name: Immersive Vocab
 extName: Immersive Vocab - Çevir ve Ezberle
-extDescription: Immersive Vocab, herhangi bir web sitesini çeviren, okurken yeni kelimeleri kaydetmenizi sağlayan ve aralıklı tekrar ile ezberlemenize yardımcı olan açık kaynaklı bir tarayıcı uzantısıdır.
+extDescription: Web sitelerini çevirir, okurken yeni kelimeleri kaydeder ve aralıklı tekrar ile ezberlemenize yardımcı olur. Açık kaynak.
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Metin

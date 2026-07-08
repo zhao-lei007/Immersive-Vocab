@@ -1,6 +1,6 @@
 name: Immersive Vocab
 extName: Immersive Vocab - Dịch và ghi nhớ
-extDescription: "Immersive Vocab là tiện ích mở rộng trình duyệt mã nguồn mở: dịch mọi trang web, lưu từ mới khi bạn đọc và giúp bạn ghi nhớ chúng bằng phương pháp lặp lại ngắt quãng."
+extDescription: Dịch mọi trang web, lưu từ mới khi bạn đọc và ghi nhớ chúng bằng phương pháp lặp lại ngắt quãng. Mã nguồn mở.
 uninstallSurveyUrl: https://tally.so/r/nPK6Ob
 dataTypes:
   string: Văn bản

@@ -1,10 +1,11 @@
-# push 一个 v* 标签即自动：跑测试 → 打包 → 建 GitHub Release → 提交 Chrome 商店审核
+# push 一个 v* 标签即自动：跑测试 → 打包 → 建 GitHub Release（zip 附在 Release 上）。
 #
-# 需要在仓库 Settings → Secrets and variables → Actions 配置 4 个 secret：
+# 商店自动提审是可选的：配置了下面 4 个 secret 才会执行，否则自动跳过，
+# 从 Release 下载 zip 手动上传商店即可。
 #   CHROME_EXTENSION_ID   商店后台扩展详情页 URL 里的 ID
 #   CHROME_CLIENT_ID      Google Cloud OAuth 客户端 ID
 #   CHROME_CLIENT_SECRET  Google Cloud OAuth 客户端密钥
-#   CHROME_REFRESH_TOKEN  刷新令牌（本地运行 `pnpm wxt submit init` 可交互生成以上三项）
+#   CHROME_REFRESH_TOKEN  刷新令牌（本地运行 `wxt-publish-extension init` 可交互生成以上三项）
 #
 # 发布方式：
 #   1. 修改 package.json 的 version（manifest 版本随之生成）并提交
@@ -73,7 +74,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Check store credentials
+        id: creds
+        env:
+          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+        run: |
+          if [ -n "$CHROME_EXTENSION_ID" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CHROME_* secrets 未配置，跳过商店自动提审——请从 GitHub Release 下载 zip 手动上传"
+          fi
+
       - name: Submit to Chrome Web Store
+        if: steps.creds.outputs.present == 'true'
         run: pnpm exec wxt-publish-extension --chrome-zip .output/*-chrome.zip
         env:
           DRY_RUN: ${{ inputs.dryRun || 'false' }}

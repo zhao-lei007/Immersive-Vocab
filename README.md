@@ -72,6 +72,8 @@ pnpm zip:all      # 打包 Chrome / Edge / Firefox 三个版本
 
 技术栈：WXT + React 19 + Dexie (IndexedDB) + Vercel AI SDK + Tailwind CSS。
 
+发版流程见 [RELEASING.md](./RELEASING.md)（推 `v*` 标签自动测试、打包并生成 GitHub Release）。
+
 ## 隐私
 
 开发者不运营任何服务器：翻译文本只发给你自己配置的服务商，生词本和设置只存在浏览器本地。详见[隐私政策](./PRIVACY.md)。

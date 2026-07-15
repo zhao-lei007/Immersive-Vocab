@@ -1,0 +1,83 @@
+# push 一个 v* 标签即自动：跑测试 → 打包 → 建 GitHub Release → 提交 Chrome 商店审核
+#
+# 需要在仓库 Settings → Secrets and variables → Actions 配置 4 个 secret：
+#   CHROME_EXTENSION_ID   商店后台扩展详情页 URL 里的 ID
+#   CHROME_CLIENT_ID      Google Cloud OAuth 客户端 ID
+#   CHROME_CLIENT_SECRET  Google Cloud OAuth 客户端密钥
+#   CHROME_REFRESH_TOKEN  刷新令牌（本地运行 `pnpm wxt submit init` 可交互生成以上三项）
+#
+# 发布方式：
+#   1. 修改 package.json 的 version（manifest 版本随之生成）并提交
+#   2. git tag v<version> && git push origin v<version>
+
+name: Release & Submit to Chrome Web Store
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      dryRun:
+        description: Dry run (build and upload only, skip store submission)
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  release-submit:
+    name: Release & Submit
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      WXT_SKIP_ENV_VALIDATION: "true"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify tag matches package version
+        if: github.ref_type == 'tag'
+        run: |
+          PKG_VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$PKG_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $PKG_VERSION"
+            exit 1
+          fi
+
+      - name: Run Tests
+        run: pnpm test
+        env:
+          SKIP_FREE_API: "true"
+
+      - name: Build and Zip Extension
+        run: pnpm zip
+
+      - name: Create GitHub Release with Zip
+        if: github.ref_type == 'tag'
+        run: |
+          gh release create "$GITHUB_REF_NAME" --generate-notes || true
+          gh release upload "$GITHUB_REF_NAME" .output/*-chrome.zip --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Submit to Chrome Web Store
+        run: pnpm exec wxt-publish-extension --chrome-zip .output/*-chrome.zip
+        env:
+          DRY_RUN: ${{ inputs.dryRun || 'false' }}
+          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}

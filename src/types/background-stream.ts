@@ -24,6 +24,7 @@ export type BackgroundStreamTextSerializablePayload = BaseBackgroundStreamSerial
 export interface BackgroundStructuredObjectOutputField {
   name: string
   type: SelectionToolbarCustomActionOutputType
+  description?: string
 }
 
 export interface ThinkingSnapshot {

@@ -212,7 +212,7 @@ function buildCustomActionExecutionRequest({
     action.outputSchema,
   )
   const prompt = replaceSelectionToolbarCustomActionPromptTokens(action.prompt, promptTokens)
-  const outputSchema = action.outputSchema.map(({ name, type }) => ({ name, type }))
+  const outputSchema = action.outputSchema.map(({ name, type, description }) => ({ name, type, description }))
   const providerKey = provider.kind === "local" ? provider.config.provider : provider.id
   const model = provider.kind === "local" ? provider.config.model : undefined
   const modelName = provider.kind === "local" ? resolveModelId(provider.config.model) ?? "" : ""

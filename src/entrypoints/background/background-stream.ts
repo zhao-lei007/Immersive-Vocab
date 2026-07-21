@@ -279,10 +279,80 @@ function createStructuredObjectSchema(
 
   const schemaShape: Record<string, z.ZodTypeAny> = {}
   for (const field of outputSchema) {
-    schemaShape[field.name] = fieldTypeToZodSchema[field.type] ?? z.string().nullable()
+    const fieldSchema = fieldTypeToZodSchema[field.type] ?? z.string().nullable()
+    // 把字段描述挂到 schema 上,让走原生 structured-output 的 provider 也能拿到描述
+    schemaShape[field.name] = field.description
+      ? fieldSchema.describe(field.description)
+      : fieldSchema
   }
 
   return z.strictObject(schemaShape)
+}
+
+// 从模型正文里提取 JSON 对象:剥离 <think> 思考块、markdown 代码围栏,以及首尾多余文本,
+// 以提升格式化能力较弱 / 会把思考混进正文的模型的解析成功率
+function extractJsonObjectText(text: string): string {
+  const withoutThink = text.replace(/<think>[\s\S]*?<\/think>/gi, "")
+  const withoutFences = withoutThink.replace(/```(?:json)?/gi, "")
+  const trimmed = withoutFences.trim()
+  const firstBrace = trimmed.indexOf("{")
+  if (firstBrace === -1) {
+    return trimmed
+  }
+  const lastBrace = trimmed.lastIndexOf("}")
+  return lastBrace > firstBrace
+    ? trimmed.slice(firstBrace, lastBrace + 1)
+    : trimmed.slice(firstBrace)
+}
+
+// 归一化 key:忽略大小写、空格、下划线、连字符的差异,容忍模型把 key 改名
+function normalizeStructuredObjectKey(key: string): string {
+  return key.trim().toLowerCase().replace(/[\s_-]+/g, "")
+}
+
+// 单个字段取值 + 类型兜底:缺失/null 兜底成空串(number 兜底成 null),
+// 非字符串值序列化成字符串,避免整体校验失败
+function coerceStructuredObjectFieldValue(
+  value: unknown,
+  type: BackgroundStructuredObjectOutputField["type"],
+): string | number | null {
+  if (value === undefined || value === null) {
+    return type === "number" ? null : ""
+  }
+  if (type === "number") {
+    if (typeof value === "number") {
+      return value
+    }
+    const parsed = Number(value)
+    return Number.isFinite(parsed) ? parsed : null
+  }
+  if (typeof value === "string") {
+    return value
+  }
+  return typeof value === "object" ? JSON.stringify(value) : String(value)
+}
+
+// 宽松校验:按 outputSchema 逐字段取值,容忍缺失 / 多余 / 改名的 key
+function coerceStructuredObjectValue(
+  source: Record<string, unknown>,
+  outputSchema: BackgroundStructuredObjectOutputField[],
+): Record<string, string | number | null> {
+  const normalizedLookup = new Map<string, unknown>()
+  for (const [key, value] of Object.entries(source)) {
+    const normalized = normalizeStructuredObjectKey(key)
+    if (!normalizedLookup.has(normalized)) {
+      normalizedLookup.set(normalized, value)
+    }
+  }
+
+  const result: Record<string, string | number | null> = {}
+  for (const field of outputSchema) {
+    const rawValue = field.name in source
+      ? source[field.name]
+      : normalizedLookup.get(normalizeStructuredObjectKey(field.name))
+    result[field.name] = coerceStructuredObjectFieldValue(rawValue, field.type)
+  }
+  return result
 }
 
 function getStringPartField(part: Record<string, unknown>, field: string): string {
@@ -397,12 +467,12 @@ async function consumeTextPartStream(
 async function consumeStructuredObjectPartStream(
   partStream: AsyncIterable<unknown>,
   options: {
-    objectSchema: z.ZodObject<Record<string, z.ZodTypeAny>>
+    outputSchema: BackgroundStructuredObjectOutputField[]
     onChunk?: StreamRuntimeOptions<BackgroundStructuredObjectStreamSnapshot>["onChunk"]
     signal?: AbortSignal
   },
 ): Promise<BackgroundStructuredObjectStreamSnapshot> {
-  const { objectSchema, onChunk, signal } = options
+  const { outputSchema, onChunk, signal } = options
   let cumulativeText = ""
   let cumulativeValue: Record<string, unknown> = {}
   let thinking: ThinkingSnapshot = {
@@ -471,8 +541,12 @@ async function consumeStructuredObjectPartStream(
   validateFinishedStream(hasFinish, finishReason)
 
   try {
-    const finalJson = await parsePartialJson(cumulativeText)
-    const finalValue = objectSchema.parse(finalJson.value)
+    // 先提取纯 JSON 再解析,并按 outputSchema 宽松取值,尽量避免弱模型触发格式校验失败
+    const finalJson = await parsePartialJson(extractJsonObjectText(cumulativeText))
+    if (!isRecord(finalJson.value)) {
+      throw new Error("Structured output is not a JSON object")
+    }
+    const finalValue = coerceStructuredObjectValue(finalJson.value, outputSchema)
     thinking = {
       ...thinking,
       status: "complete",
@@ -581,7 +655,7 @@ export async function runStructuredObjectStreamInBackground(
     : await createLocalStructuredObjectPartStream(serializablePayload, objectSchema, options)
 
   return consumeStructuredObjectPartStream(partStream, {
-    objectSchema,
+    outputSchema: serializablePayload.outputSchema,
     onChunk,
     signal,
   })
